@@ -162,3 +162,9 @@ By pairing an **air-gapped Honeypot Defense Perimeter** with an **empirical grou
   - Captured in isolated sandbox                       - Passed to Vera Engine
   - Threat signature logged                            - Cross-referenced for truth
   - Node firewall rules updated                        - Executed on Sumera Ledger 
+
+
+
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![Build Status](https://img.shields.io/badge/Status-Architectural__Draft-orange)
+![Network](https://img.shields.io/badge/Network-Decentralized__Compute-green) 
