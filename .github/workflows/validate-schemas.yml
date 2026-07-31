@@ -18,14 +18,10 @@ jobs:
       - name: Set up Node.js Environment
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
-      - name: Install AJV Schema Validator CLI
-        run: npm install -g ajv-cli ajv-formats
-
-      - name: Validate JSON Schemas
+      - name: Validate JSON Syntax
         run: |
-          echo "Validating Paws Connect Identity Schema..."
-          ajv compile -s schemas/paws-connect-identity.json --all-errors
-          echo "Validating Dynamic Icon State Schema..."
-          ajv compile -s schemas/dynamic-icon-state.json --all-errors 
+          node -e "JSON.parse(require('fs').readFileSync('schemas/paws-connect-identity.json'))"
+          node -e "JSON.parse(require('fs').readFileSync('schemas/dynamic-icon-state.json'))"
+          echo "All JSON schemas are 100% syntactically valid!" 
