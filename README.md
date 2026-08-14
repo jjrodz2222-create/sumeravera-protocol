@@ -13,6 +13,7 @@ Designed for high-throughput operational integrity and real-time validation. Exp
 
 
 
+
 # SumerAvera Protocol (SVP)
 > **An Intent-Driven Decentralized Computing Architecture & Ground-Truth Verification Engine**
 
