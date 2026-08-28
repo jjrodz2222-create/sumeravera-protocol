@@ -1,0 +1,24 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: sumera-layer
+    static_configs:
+      - targets: ['sumera-layer:3001']
+    metrics_path: /metrics
+
+  - job_name: avera-engine
+    static_configs:
+      - targets: ['avera-engine:3002']
+    metrics_path: /metrics
+
+  - job_name: honeypot-perimeter
+    static_configs:
+      - targets: ['honeypot-perimeter:3003']
+    metrics_path: /metrics
+
+  - job_name: paws-connect
+    static_configs:
+      - targets: ['paws-connect:3004']
+    metrics_path: /metrics

@@ -1,0 +1,125 @@
+name: SVP CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_PREFIX: ${{ github.repository_owner }}/svp
+
+jobs:
+  # ── Lint & test each service ─────────────────────────────────────────────
+  test:
+    name: Test ${{ matrix.service }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [sumera-layer, avera-engine, honeypot-perimeter, paws-connect]
+    defaults:
+      run:
+        working-directory: services/${{ matrix.service }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: services/${{ matrix.service }}/package.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+  # ── Build & push Docker images ───────────────────────────────────────────
+  build:
+    name: Build ${{ matrix.service }}
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      matrix:
+        include:
+          - service: sumera-layer
+            context: services/sumera-layer
+          - service: avera-engine
+            context: services/avera-engine
+          - service: honeypot-perimeter
+            context: services/honeypot-perimeter
+          - service: paws-connect
+            context: .
+            dockerfile: services/paws-connect/Dockerfile
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-${{ matrix.service }}
+          tags: |
+            type=sha,prefix=sha-
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile || format('services/{0}/Dockerfile', matrix.service) }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  # ── Deploy to Kubernetes (main branch only) ──────────────────────────────
+  deploy:
+    name: Deploy to K8s
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Configure kubeconfig
+        run: echo "${{ secrets.KUBECONFIG }}" | base64 -d > /tmp/kubeconfig.yml
+
+      - name: Update image tags in manifests
+        run: |
+          SHA=$(echo "${{ github.sha }}" | cut -c1-7)
+          sed -i "s|svp/sumera-layer:latest|${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-sumera-layer:sha-${SHA}|g" k8s/svp-stack.yml
+          sed -i "s|svp/avera-engine:latest|${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-avera-engine:sha-${SHA}|g" k8s/svp-stack.yml
+          sed -i "s|svp/honeypot-perimeter:latest|${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-honeypot-perimeter:sha-${SHA}|g" k8s/svp-stack.yml
+          sed -i "s|svp/paws-connect:latest|${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-paws-connect:sha-${SHA}|g" k8s/svp-stack.yml
+
+      - name: Apply manifests
+        env:
+          KUBECONFIG: /tmp/kubeconfig.yml
+        run: kubectl apply -f k8s/svp-stack.yml
+
+      - name: Wait for rollout
+        env:
+          KUBECONFIG: /tmp/kubeconfig.yml
+        run: |
+          kubectl rollout status deployment/sumera-layer -n svp --timeout=120s
+          kubectl rollout status deployment/avera-engine -n svp --timeout=120s
+          kubectl rollout status deployment/honeypot-perimeter -n svp --timeout=120s
+          kubectl rollout status deployment/paws-connect -n svp --timeout=120s

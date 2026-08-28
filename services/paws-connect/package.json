@@ -1,0 +1,17 @@
+{
+  "name": "paws-connect",
+  "version": "1.0.0",
+  "description": "Paws Connect — species-agnostic identity and verification service",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "ajv": "^8.16.0",
+    "better-sqlite3": "^9.6.0",
+    "prom-client": "^15.1.3"
+  }
+}

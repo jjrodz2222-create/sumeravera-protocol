@@ -1,0 +1,16 @@
+{
+  "name": "avera-engine",
+  "version": "1.0.0",
+  "description": "Avera Engine — ground-truth validation service",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "node-fetch": "^3.3.2",
+    "prom-client": "^15.1.3"
+  }
+}
