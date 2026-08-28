@@ -1,0 +1,17 @@
+{
+  "name": "sumera-layer",
+  "version": "1.0.0",
+  "description": "SumerA Layer — append-only immutable ledger service",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "better-sqlite3": "^9.6.0",
+    "express-rate-limit": "^7.3.1",
+    "prom-client": "^15.1.3"
+  }
+}

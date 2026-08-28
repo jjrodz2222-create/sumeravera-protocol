@@ -1,0 +1,136 @@
+version: "3.9"
+
+# ── Networks ─────────────────────────────────────────────────────────────────
+networks:
+  perimeter:        # external-facing: honeypot + gateway
+  internal:         # inner tier: avera-engine + sumera-layer + paws-connect
+  monitoring:       # Prometheus / Grafana
+
+# ── Volumes ───────────────────────────────────────────────────────────────────
+volumes:
+  sumera_data:
+  paws_data:
+  prometheus_data:
+  grafana_data:
+
+# ── Services ──────────────────────────────────────────────────────────────────
+services:
+
+  # ── Honeypot Perimeter (edge / outermost tier) ──────────────────────────────
+  honeypot-perimeter:
+    build:
+      context: ./services/honeypot-perimeter
+    image: svp/honeypot-perimeter:local
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PORT: "3003"
+      SUMERA_URL: "http://sumera-layer:3001"
+    ports:
+      - "${HONEYPOT_PORT:-3003}:3003"   # decoy surface exposed to the world
+    networks:
+      - perimeter
+      - internal
+    depends_on:
+      sumera-layer:
+        condition: service_healthy
+
+  # ── SumerA Layer (consensus ledger — inner tier) ────────────────────────────
+  sumera-layer:
+    build:
+      context: ./services/sumera-layer
+    image: svp/sumera-layer:local
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PORT: "3001"
+      DB_PATH: "/data/sumera.db"
+    volumes:
+      - sumera_data:/data
+    ports:
+      - "${SUMERA_PORT:-3001}:3001"
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3001/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # ── Avera Engine (middle validation tier) ──────────────────────────────────
+  avera-engine:
+    build:
+      context: ./services/avera-engine
+    image: svp/avera-engine:local
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PORT: "3002"
+      SUMERA_URL: "http://sumera-layer:3001"
+      HONEYPOT_URL: "http://honeypot-perimeter:3003"
+    ports:
+      - "${AVERA_PORT:-3002}:3002"
+    networks:
+      - internal
+    depends_on:
+      sumera-layer:
+        condition: service_healthy
+
+  # ── Paws Connect (identity layer) ──────────────────────────────────────────
+  paws-connect:
+    build:
+      context: .
+      dockerfile: ./services/paws-connect/Dockerfile
+    image: svp/paws-connect:local
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PORT: "3004"
+      DB_PATH: "/data/paws.db"
+      SUMERA_URL: "http://sumera-layer:3001"
+      AVERA_URL: "http://avera-engine:3002"
+    volumes:
+      - paws_data:/data
+    ports:
+      - "${PAWS_PORT:-3004}:3004"
+    networks:
+      - internal
+    depends_on:
+      sumera-layer:
+        condition: service_healthy
+
+  # ── Prometheus ──────────────────────────────────────────────────────────────
+  prometheus:
+    image: prom/prometheus:v2.52.0
+    restart: unless-stopped
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - "${PROMETHEUS_PORT:-9090}:9090"
+    networks:
+      - internal
+      - monitoring
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=30d"
+
+  # ── Grafana ─────────────────────────────────────────────────────────────────
+  grafana:
+    image: grafana/grafana:10.4.3
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: "${GRAFANA_USER:-admin}"
+      GF_SECURITY_ADMIN_PASSWORD: "${GRAFANA_PASSWORD}"
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    ports:
+      - "${GRAFANA_PORT:-3000}:3000"
+    networks:
+      - monitoring
+    depends_on:
+      - prometheus
