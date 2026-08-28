@@ -21,10 +21,6 @@ const DB_PATH = process.env.DB_PATH || '/data/paws.db';
 const SUMERA_URL = process.env.SUMERA_URL || 'http://sumera-layer:3001';
 const AVERA_URL = process.env.AVERA_URL || 'http://avera-engine:3002';
 
-// ── Dynamic import of node-fetch ──────────────────────────────────────────────
-let fetch;
-(async () => { ({ default: fetch } = await import('node-fetch')); })();
-
 // ── Load identity schema ──────────────────────────────────────────────────────
 const SCHEMA_PATH = path.join(__dirname, '../../../schemas/paws-connect-identity.json');
 const identitySchema = JSON.parse(fs.readFileSync(SCHEMA_PATH, 'utf8'));
@@ -109,6 +105,7 @@ app.post('/nodes', async (req, res) => {
   // Validate signal via Avera Engine
   let averaResult = null;
   try {
+    const { default: fetch } = await import('node-fetch');
     const resp = await fetch(`${AVERA_URL}/validate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

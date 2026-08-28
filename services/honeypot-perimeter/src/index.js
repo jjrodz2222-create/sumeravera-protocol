@@ -16,11 +16,8 @@ const client = require('prom-client');
 const PORT = process.env.PORT || 3003;
 const SUMERA_URL = process.env.SUMERA_URL || 'http://sumera-layer:3001';
 
-// ── Dynamic import of node-fetch ──────────────────────────────────────────────
-let fetch;
-(async () => { ({ default: fetch } = await import('node-fetch')); })();
-
-// ── In-memory threat store (augmented by ledger on startup) ───────────────────
+// ── In-memory threat store ────────────────────────────────────────────────────
+const MAX_THREAT_LOG = 10000;
 const threatLog = [];       // { id, ip, timestamp, method, path, headers, body, severity }
 const blocklist = new Set(); // IPs flagged as malicious
 
@@ -55,6 +52,7 @@ function fingerprint(req) {
 }
 
 async function recordThreat(event) {
+  if (threatLog.length >= MAX_THREAT_LOG) threatLog.shift();
   threatLog.push(event);
   threatsTotal.inc({ severity: event.severity });
 
@@ -65,6 +63,7 @@ async function recordThreat(event) {
 
   // Fire-and-forget: log to SumerA ledger
   try {
+    const { default: fetch } = await import('node-fetch');
     await fetch(`${SUMERA_URL}/ledger/append`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

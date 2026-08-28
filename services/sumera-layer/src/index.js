@@ -62,16 +62,20 @@ function appendEntry(category, payload) {
   const entry_id = crypto.randomUUID();
   const timestamp = new Date().toISOString();
   const payload_hash = sha256(JSON.stringify(payload));
-  const prev_hash = lastChainHash();
-  const chain_hash = sha256(`${prev_hash}${payload_hash}${timestamp}`);
 
-  db.prepare(`
-    INSERT INTO ledger (entry_id, timestamp, category, payload_hash, payload, prev_hash, chain_hash)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
-  `).run(entry_id, timestamp, category, payload_hash, JSON.stringify(payload), prev_hash, chain_hash);
+  const insert = db.transaction(() => {
+    const prev_hash = lastChainHash();
+    const chain_hash = sha256(`${prev_hash}${payload_hash}${timestamp}`);
+    db.prepare(`
+      INSERT INTO ledger (entry_id, timestamp, category, payload_hash, payload, prev_hash, chain_hash)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `).run(entry_id, timestamp, category, payload_hash, JSON.stringify(payload), prev_hash, chain_hash);
+    return { entry_id, timestamp, chain_hash };
+  });
 
+  const result = insert();
   ledgerEntries.inc({ category });
-  return { entry_id, timestamp, chain_hash };
+  return result;
 }
 
 function verifyChain() {

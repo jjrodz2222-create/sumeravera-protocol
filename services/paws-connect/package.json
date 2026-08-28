@@ -12,6 +12,7 @@
     "express": "^4.19.2",
     "ajv": "^8.16.0",
     "better-sqlite3": "^9.6.0",
+    "node-fetch": "^3.3.2",
     "prom-client": "^15.1.3"
   }
 }
