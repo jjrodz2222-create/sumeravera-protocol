@@ -13,6 +13,7 @@ const crypto = require('crypto');
 const Database = require('better-sqlite3');
 const Ajv = require('ajv');
 const client = require('prom-client');
+const rateLimit = require('express-rate-limit');
 const path = require('path');
 const fs = require('fs');
 
@@ -25,7 +26,7 @@ const AVERA_URL = process.env.AVERA_URL || 'http://avera-engine:3002';
 const SCHEMA_PATH = path.join(__dirname, '../../../schemas/paws-connect-identity.json');
 const identitySchema = JSON.parse(fs.readFileSync(SCHEMA_PATH, 'utf8'));
 
-const ajv = new Ajv({ allErrors: true });
+const ajv = new Ajv({ allErrors: false });
 const validateIdentity = ajv.compile(identitySchema);
 
 // ── Ensure data directory ─────────────────────────────────────────────────────
@@ -78,6 +79,9 @@ function deriveNodeId(species, primaryMarkingHash, stewardSignature) {
 // ── Express app ───────────────────────────────────────────────────────────────
 const app = express();
 app.use(express.json());
+
+const apiLimiter = rateLimit({ windowMs: 60_000, max: 200, standardHeaders: true, legacyHeaders: false });
+app.use(apiLimiter);
 
 /**
  * POST /nodes

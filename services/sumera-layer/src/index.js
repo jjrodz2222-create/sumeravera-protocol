@@ -11,6 +11,7 @@ const express = require('express');
 const crypto = require('crypto');
 const Database = require('better-sqlite3');
 const client = require('prom-client');
+const rateLimit = require('express-rate-limit');
 const path = require('path');
 const fs = require('fs');
 
@@ -93,6 +94,9 @@ function verifyChain() {
 // ── Express app ───────────────────────────────────────────────────────────────
 const app = express();
 app.use(express.json());
+
+const apiLimiter = rateLimit({ windowMs: 60_000, max: 200, standardHeaders: true, legacyHeaders: false });
+app.use(apiLimiter);
 
 // Append a new entry to the ledger
 app.post('/ledger/append', (req, res) => {

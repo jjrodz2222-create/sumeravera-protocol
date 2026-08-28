@@ -11,6 +11,7 @@
   "dependencies": {
     "express": "^4.19.2",
     "better-sqlite3": "^9.6.0",
+    "express-rate-limit": "^7.3.1",
     "prom-client": "^15.1.3"
   }
 }
