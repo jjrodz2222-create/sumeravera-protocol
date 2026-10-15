@@ -1,0 +1,8 @@
+{
+  "name": "SumerAvera Protocol",
+  "description": "Deterministic State & Ground-Truth Verification Engine with Immutable Ledger, Honeypot Perimeter Defense, and Paws Connect Identity",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

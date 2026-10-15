@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SumerAvera Protocol</string>
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_ledger">SumerA</string>
+    <string name="nav_avera">Avera</string>
+    <string name="nav_perimeter">Honeypot</string>
+    <string name="nav_paws">Paws</string>
+</resources>

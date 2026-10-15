@@ -1,22 +1,10 @@
-# Dependencies
-node_modules/
-**/node_modules/
-
-# Runtime data
-*.db
-*.db-shm
-*.db-wal
-
-# Environment
-.env
-
-# OS
+*.iml
+.gradle
+/local.properties
+/.idea
 .DS_Store
-Thumbs.db
-
-# Logs
-*.log
-logs/
-
-# Build
-dist/
+/build
+/captures
+.externalNativeBuild
+.cxx
+node_modules/

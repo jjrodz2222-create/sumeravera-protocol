@@ -1,64 +1,46 @@
+# SumerAvera Protocol (SVP) — Android Edition
 
-
-
-
-An intent-driven, decentralized architecture designed for ground-truth verification, state invariance, and secure telemetry.
-
-## Overview
-The SumerAvera Protocol provides an immutable verification layer, utilizing advanced cryptographic hashing and a perimeter-based security model to maintain absolute system integrity.
-
-## Key Features
-* **Immutable Truth Ledger**: Ensures transparent, tamper-proof state records.
-* **Telemetry & Ingress Validation**: Real-time monitoring and anomaly mapping for secure transaction streams.
-* **Paws Connect Integration**: Extends decentralized verification down to mobile and localized application layers.
-
-## Proof of Concept
-Designed for high-throughput operational integrity and real-time validation. 
-
-
-
-
-
-
-# SumerAvera Protocol (SVP)
 > **An Intent-Driven Decentralized Computing Architecture & Ground-Truth Verification Engine**
 
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-![Build Status](https://img.shields.io/badge/Status-Architectural_Draft-orange)
-![Network](https://img.shields.io/badge/Network-Decentralized_Compute-green)
+SumerAvera Protocol is an Android application engineered with Kotlin and Jetpack Compose that implements the deterministic state and verification engine of the SumerAvera Protocol (SVP).
 
 ---
 
-## 🏛️ Executive Overview
+## 🏛️ Architecture Pillars
 
-The **SumerAvera Protocol (SVP)** is a decentralized, intent-driven computing framework designed to strip away synthetic noise, algorithmic bias, and middleman exploitation from digital data streams.
+1. **SumerA Layer (Immutable Ledger):**
+   - Append-only cryptographic ledger linking every state block with SHA-256 chain hashing (`prev_hash` ➔ `chain_hash`).
+   - One-tap cryptographic integrity verification across all blocks.
+   - Interactive tamper detection and repair capabilities.
+   - **Local Invariant Ledger (Layer 1):** Deterministic ground-truth store for P0/P1 invariants, directives, and terminology specifications to prevent conversational context rot and parameter drift.
 
-By pairing an **air-gapped Honeypot Defense Perimeter** with an **empirical ground-truth validation engine**, SVP ensures that raw data, user intent, and computational tasks execute with absolute integrity while returning value directly to contributors based on verified utility.
+2. **Avera Engine (Ground-Truth Validation):**
+   - Ingress gate testing payloads against active rules (RULE-001, RULE-002, RULE-003, and RULE-004 anti-drift checks).
+   - Generates deterministic payload SHA-256 hashes and automatically commits verified records to the SumerA ledger.
+   - Ingress audit history with direct linkage to ledger blocks.
+
+3. **Honeypot Perimeter (Action-Edge Defense):**
+   - Low-interaction decoy surface designed to trap malicious probes.
+   - Dynamic real-time severity classification (`critical`, `warning`, `info`) and SHA-256 probe fingerprinting.
+   - Real-time firewall blocklist with automatic IP mitigation for critical probes and decoy responses.
+   - Inbound threat telemetry logging anchored into the SumerA ledger.
+
+4. **Paws Connect (Identity & Stewardship Node):**
+   - Species-agnostic biometric identity protocol compliant with the `paws-connect-identity.json` schema.
+   - Deterministic node ID generation (`sha256(species:markingHash:stewardSignature)`).
+   - Microchip and primary biometric marking hash registry.
+   - Public-key steward signature verification gate.
+
+5. **Dynamic Icon & Alert System:**
+   - Visual telemetry state engine adhering to `dynamic-icon-state.json` triggering alert aliases and severity badges based on network telemetry.
 
 ---
 
-## 🧩 Core Architecture Pillars
+## 🛠️ Tech Stack
 
-1. **SumerA Layer (Immutable Ledger):** The base consensus layer that cryptographically anchors raw data inputs, contributor provenance, and state execution without central alteration.
-2. **Avera Engine (Ground-Truth Validation):** The processing and execution layer designed to cross-reference data streams, cryptographic origins, and immutable logs to eliminate hallucination and malicious noise.
-3. **Honeypot Perimeter (Action-Edge Defense):** Containerized, air-gapped decoy nodes placed at the network edge to absorb malicious actors, log threat telemetry, and dynamically update global node firewall rules in real time.
-
----
-
-## 📐 System Architecture
-
-```text
-[ EXTERNAL USER INTENT / DATA STREAM ]
-                 │
-                 ▼
-    ┌──────────────────────────┐
-    │ Honeypot Perimeter Guard │
-    │ (Low-Interaction Decoys) │
-    └────────────┬─────────────┘
-                 │
-   ┌─────────────┴─────────────┐
-   ▼                           ▼
-[ MALICIOUS TRAFFIC DETECTED ] [ VALIDATED SIGNAL ]
-├─ Captured in sandbox         ├─ Passed to Avera Engine
-├─ Threat signature logged     ├─ Cross-referenced for Truth
-└─ Node firewall rules updated └─ Executed on SumerA Ledger 
+- **Target Runtime:** Android (Min SDK 26, Target SDK 35, Compile SDK 35)
+- **Language:** Kotlin 2.1.0 (JVM 21)
+- **UI Framework:** Jetpack Compose with Material Design 3 (M3)
+- **Build System:** Gradle 9.3.1 (Kotlin DSL) with Version Catalogs
+- **Architecture:** Clean MVVM with Coroutines & StateFlow
+- **Cryptography:** Java Security MessageDigest (SHA-256)
