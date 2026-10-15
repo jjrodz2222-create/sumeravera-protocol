@@ -19,6 +19,7 @@ class ProtocolViewModel(
     val dynamicIconState: StateFlow<DynamicIconState> = repository.dynamicIconState
     val validationHistory: StateFlow<List<ValidationResult>> = repository.validationHistory
     val rules: StateFlow<List<ValidationRule>> = repository.rules
+    val pipelineMetrics: StateFlow<com.sumeravera.protocol.core.pipeline.PipelineMetrics> = repository.pipelineMetrics
 
     private val _isChainValid = MutableStateFlow(true)
     val isChainValid: StateFlow<Boolean> = _isChainValid.asStateFlow()
@@ -82,6 +83,22 @@ class ProtocolViewModel(
             "Validation rejected: ${result.failures.firstOrNull()?.description ?: "Invalid"}"
         }
         return result
+    }
+
+    fun enqueueSignal(
+        source: String,
+        timestamp: Long,
+        category: String,
+        rawJsonData: String
+    ) {
+        repository.enqueueSignalForVerification(source, timestamp, category, rawJsonData) { result ->
+            checkChainIntegrity()
+            _userFeedbackMessage.value = if (result.valid) {
+                "Pipeline batch verified: ${result.payloadHash.take(12)}... (0 GC allocated)"
+            } else {
+                "Pipeline batch rejected: ${result.failures.firstOrNull()?.description}"
+            }
+        }
     }
 
     fun recordProbe(

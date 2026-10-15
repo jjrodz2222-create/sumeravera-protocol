@@ -34,6 +34,7 @@ fun AveraEngineScreen(viewModel: ProtocolViewModel) {
 
     val rules by viewModel.rules.collectAsState()
     val validationHistory by viewModel.validationHistory.collectAsState()
+    val pipelineMetrics by viewModel.pipelineMetrics.collectAsState()
 
     LazyColumn(
         modifier = Modifier
@@ -66,6 +67,63 @@ fun AveraEngineScreen(viewModel: ProtocolViewModel) {
                         text = "Cross-references signals against cryptographic origins and Layer 1 invariants to eliminate hallucination before ledger commit.",
                         style = MaterialTheme.typography.bodyMedium.copy(color = TextSecondary, fontSize = 12.sp)
                     )
+                }
+            }
+        }
+
+        // Edge Worker Pipeline Telemetry
+        item {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .border(1.dp, PrimaryCyan.copy(alpha = 0.3f), RoundedCornerShape(14.dp)),
+                colors = CardDefaults.cardColors(containerColor = SurfaceDark),
+                shape = RoundedCornerShape(14.dp)
+            ) {
+                Column(modifier = Modifier.padding(14.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(Icons.Default.Bolt, contentDescription = null, tint = PrimaryCyan, modifier = Modifier.size(18.dp))
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text(
+                                text = "EDGE PIPELINE (LOW-POWER COALESCING)",
+                                style = MaterialTheme.typography.labelSmall.copy(color = PrimaryCyan, fontWeight = FontWeight.Bold)
+                            )
+                        }
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(4.dp))
+                                .background(if (pipelineMetrics.isRunning) StatusGreen.copy(alpha = 0.2f) else StatusYellow.copy(alpha = 0.2f))
+                                .padding(horizontal = 6.dp, vertical = 2.dp)
+                        ) {
+                            Text(
+                                text = if (pipelineMetrics.isRunning) "ACTIVE COALESCING" else "IDLE SUSPEND",
+                                color = if (pipelineMetrics.isRunning) StatusGreen else StatusYellow,
+                                fontSize = 9.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text("Signals Processed", style = MaterialTheme.typography.labelSmall.copy(color = TextMuted, fontSize = 10.sp))
+                            Text("${pipelineMetrics.processedSignals}", style = MaterialTheme.typography.titleMedium.copy(color = TextPrimary, fontWeight = FontWeight.Bold))
+                        }
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text("Batches Flushed", style = MaterialTheme.typography.labelSmall.copy(color = TextMuted, fontSize = 10.sp))
+                            Text("${pipelineMetrics.batchesFlushed}", style = MaterialTheme.typography.titleMedium.copy(color = TextPrimary, fontWeight = FontWeight.Bold))
+                        }
+                        Column(modifier = Modifier.weight(1.2f)) {
+                            Text("Envelopes Recycled", style = MaterialTheme.typography.labelSmall.copy(color = TextMuted, fontSize = 10.sp))
+                            Text("${pipelineMetrics.recycledEnvelopes} (0 GC)", style = MaterialTheme.typography.titleMedium.copy(color = HashGreen, fontWeight = FontWeight.Bold))
+                        }
+                    }
                 }
             }
         }
@@ -192,25 +250,43 @@ fun AveraEngineScreen(viewModel: ProtocolViewModel) {
                         }
                     }
 
-                    Button(
-                        onClick = {
-                            val result = viewModel.validatePayload(
-                                source = source,
-                                timestamp = System.currentTimeMillis(),
-                                category = category,
-                                rawJsonData = payloadJson
-                            )
-                            latestResult = result
-                        },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .testTag("btn_run_avera_validation"),
-                        colors = ButtonDefaults.buttonColors(containerColor = PrimaryCyan),
-                        shape = RoundedCornerShape(8.dp)
-                    ) {
-                        Icon(Icons.Default.PlayArrow, contentDescription = null, tint = BgDark, modifier = Modifier.size(18.dp))
-                        Spacer(modifier = Modifier.width(6.dp))
-                        Text("Validate & Anchor to SumerA", color = BgDark, fontWeight = FontWeight.Bold)
+                    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Button(
+                            onClick = {
+                                val result = viewModel.validatePayload(
+                                    source = source,
+                                    timestamp = System.currentTimeMillis(),
+                                    category = category,
+                                    rawJsonData = payloadJson
+                                )
+                                latestResult = result
+                            },
+                            modifier = Modifier
+                                .weight(1f)
+                                .testTag("btn_run_avera_validation"),
+                            colors = ButtonDefaults.buttonColors(containerColor = PrimaryCyan),
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Text("Direct Validate", color = BgDark, fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                        }
+
+                        Button(
+                            onClick = {
+                                viewModel.enqueueSignal(
+                                    source = source,
+                                    timestamp = System.currentTimeMillis(),
+                                    category = category,
+                                    rawJsonData = payloadJson
+                                )
+                            },
+                            modifier = Modifier
+                                .weight(1f)
+                                .testTag("btn_enqueue_pipeline"),
+                            colors = ButtonDefaults.buttonColors(containerColor = SecondaryBlue),
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Text("Enqueue Pipeline", color = BgDark, fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                        }
                     }
 
                     // Result presentation

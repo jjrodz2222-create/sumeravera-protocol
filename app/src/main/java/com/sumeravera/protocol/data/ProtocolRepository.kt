@@ -1,16 +1,30 @@
 package com.sumeravera.protocol.data
 
+import com.sumeravera.protocol.core.crypto.FastCrypto
+import com.sumeravera.protocol.core.engine.SumerAStateEngine
+import com.sumeravera.protocol.core.pipeline.EdgeVerificationPipeline
+import com.sumeravera.protocol.core.pipeline.PipelineMetrics
 import com.sumeravera.protocol.model.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import org.json.JSONObject
-import java.security.MessageDigest
-import java.text.SimpleDateFormat
+import kotlinx.coroutines.launch
 import java.util.*
 
 class ProtocolRepository {
+
+    private val repositoryScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+
+    // Core deterministic state & verification engine
+    val stateEngine = SumerAStateEngine()
+
+    // Low-power background worker pipeline for edge compute
+    val pipeline = EdgeVerificationPipeline(stateEngine, repositoryScope)
+    val pipelineMetrics: StateFlow<PipelineMetrics> = pipeline.metrics
 
     private val _ledgerEntries = MutableStateFlow<List<LedgerEntry>>(emptyList())
     val ledgerEntries: StateFlow<List<LedgerEntry>> = _ledgerEntries.asStateFlow()
@@ -43,98 +57,39 @@ class ProtocolRepository {
     )
     val rules: StateFlow<List<ValidationRule>> = _rules.asStateFlow()
 
-    private var nextSeq = 1L
-
     init {
-        seedInitialState()
+        syncStateFromEngine()
+        seedSampleData()
     }
 
-    // ── Cryptographic Hashing ──────────────────────────────────────────────────
-    fun sha256(data: String): String {
-        val digest = MessageDigest.getInstance("SHA-256")
-        val bytes = digest.digest(data.toByteArray(Charsets.UTF_8))
-        return bytes.joinToString("") { "%02x".format(it) }
+    private fun syncStateFromEngine() {
+        _ledgerEntries.value = stateEngine.getLedgerBlocks()
+        _invariants.value = stateEngine.getInvariants()
     }
 
-    private fun nowIso(): String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
-        sdf.timeZone = TimeZone.getTimeZone("UTC")
-        return sdf.format(Date())
-    }
+    // ── Cryptographic Hashing (Zero-Allocation FastCrypto) ────────────────────
+    fun sha256(data: String): String = FastCrypto.sha256(data)
 
     // ── SumerA Layer (Immutable Ledger) ────────────────────────────────────────
-    @Synchronized
     fun appendLedgerEntry(category: String, payload: String): LedgerEntry {
-        val currentEntries = _ledgerEntries.value
-        val prevHash = if (currentEntries.isEmpty()) {
-            "0".repeat(64)
-        } else {
-            currentEntries.last().chainHash
-        }
-
-        val entryId = UUID.randomUUID().toString()
-        val timestamp = nowIso()
-        val payloadHash = sha256(payload)
-        val chainHash = sha256("$prevHash$payloadHash$timestamp")
-
-        val entry = LedgerEntry(
-            seq = nextSeq++,
-            entryId = entryId,
-            timestamp = timestamp,
-            category = category,
-            payloadHash = payloadHash,
-            payload = payload,
-            prevHash = prevHash,
-            chainHash = chainHash
-        )
-
-        _ledgerEntries.update { it + entry }
+        val entry = stateEngine.appendRawBlock(category, payload, System.currentTimeMillis().toString())
+        syncStateFromEngine()
         return entry
     }
 
     fun verifyChainIntegrity(): Boolean {
-        val entries = _ledgerEntries.value
-        if (entries.isEmpty()) return true
-
-        var prevHash = "0".repeat(64)
-        for (entry in entries) {
-            if (entry.prevHash != prevHash) return false
-            val expectedHash = sha256("${entry.prevHash}${entry.payloadHash}${entry.timestamp}")
-            if (entry.chainHash != expectedHash) return false
-            prevHash = entry.chainHash
-        }
-        return true
+        return stateEngine.verifyChain(fullAudit = false)
     }
 
     fun tamperChainForDemo(): Boolean {
-        val entries = _ledgerEntries.value.toMutableList()
-        if (entries.size >= 2) {
-            val idx = entries.size - 2
-            val old = entries[idx]
-            entries[idx] = old.copy(payload = old.payload + " [UNAUTHORIZED_MODIFICATION]")
-            _ledgerEntries.value = entries
-            return true
-        }
-        return false
+        val result = stateEngine.tamperBlockForDemo()
+        syncStateFromEngine()
+        return result
     }
 
     fun recalculateAndRepairChain() {
-        val entries = _ledgerEntries.value
-        if (entries.isEmpty()) return
-
-        var prevHash = "0".repeat(64)
-        val repaired = entries.map { entry ->
-            val payloadHash = sha256(entry.payload)
-            val chainHash = sha256("$prevHash$payloadHash${entry.timestamp}")
-            val fixed = entry.copy(
-                prevHash = prevHash,
-                payloadHash = payloadHash,
-                chainHash = chainHash
-            )
-            prevHash = chainHash
-            fixed
-        }
-        _ledgerEntries.value = repaired
+        stateEngine.repairChain()
+        syncStateFromEngine()
     }
 
     // ── State Engine Invariants (Layer 1) ─────────────────────────────────────
@@ -145,123 +100,68 @@ class ProtocolRepository {
         value: String,
         immutable: Boolean
     ): Pair<Boolean, String> {
-        val existing = _invariants.value.find { it.key.equals(key, ignoreCase = true) }
-        if (existing != null && existing.immutable) {
-            return Pair(false, "Cannot overwrite immutable invariant with key: $key")
-        }
-
-        val id = "INV-" + String.format(Locale.US, "%03d", _invariants.value.size + 1)
-        val timestamp = nowIso()
-        val newInv = StateInvariant(
-            id = id,
-            timestamp = timestamp,
-            priority = priority,
-            category = category,
-            key = key,
-            value = value,
-            immutable = immutable
-        )
-
-        if (existing != null) {
-            _invariants.update { list -> list.map { if (it.key.equals(key, ignoreCase = true)) newInv else it } }
-        } else {
-            _invariants.update { it + newInv }
-        }
-
-        // Anchor into SumerA ledger
-        val payloadJson = JSONObject().apply {
-            put("action", "APPEND_INVARIANT")
-            put("id", id)
-            put("priority", priority)
-            put("category", category)
-            put("key", key)
-            put("value", value)
-            put("immutable", immutable)
-        }.toString()
-        appendLedgerEntry("INVARIANT", payloadJson)
-
-        return Pair(true, "Invariant $id successfully anchored to SumerA ledger.")
+        val result = stateEngine.addInvariant(priority, category, key, value, immutable)
+        syncStateFromEngine()
+        return result
     }
 
-    // ── Avera Ground-Truth Validation Engine ───────────────────────────────────
+    // ── Avera Ground-Truth Validation Engine (Layer 3) ─────────────────────────
     fun validatePayload(
         source: String,
         timestamp: Long?,
         category: String,
         rawJsonData: String
     ): ValidationResult {
-        val failures = mutableListOf<ValidationRuleFailure>()
-        val invariantConflicts = mutableListOf<String>()
-
-        // RULE-001: Payload must not be empty
-        if (rawJsonData.isBlank() || rawJsonData.trim() == "{}") {
-            failures.add(ValidationRuleFailure("RULE-001", "Payload must not be empty"))
-        }
-
-        // RULE-002: Payload must include a source identifier
-        if (source.isBlank()) {
-            failures.add(ValidationRuleFailure("RULE-002", "Payload must include a source identifier"))
-        }
-
-        // RULE-003: Payload must include a timestamp
-        if (timestamp == null || timestamp <= 0) {
-            failures.add(ValidationRuleFailure("RULE-003", "Payload must include a valid timestamp"))
-        }
-
-        // RULE-004: Invariant anti-drift check
-        // If payload contains terminology explicitly forbidden by immutable invariants
-        val terminologyInvariant = _invariants.value.find { it.key == "terminology_rules" }
-        if (terminologyInvariant != null) {
-            if (rawJsonData.contains("blinkers", ignoreCase = true)) {
-                invariantConflicts.add("Violates INV-002: term 'blinkers' detected; use 'blinders'")
-            }
-            if (rawJsonData.contains("expand", ignoreCase = true) && !rawJsonData.contains("expound", ignoreCase = true)) {
-                invariantConflicts.add("Violates INV-002: preference for 'expound' over 'expand'")
-            }
-        }
-
-        if (invariantConflicts.isNotEmpty()) {
-            failures.add(ValidationRuleFailure("RULE-004", invariantConflicts.joinToString("; ")))
-        }
-
-        val payloadHash = sha256(rawJsonData)
-        val passed = failures.isEmpty()
-
-        var ledgerEntryId: String? = null
-        if (passed) {
-            val recordJson = JSONObject().apply {
-                put("source", source)
-                put("timestamp", timestamp ?: System.currentTimeMillis())
-                put("validated_category", category)
-                put("payload_hash", payloadHash)
-                put("data", rawJsonData)
-            }.toString()
-            val entry = appendLedgerEntry(category, recordJson)
-            ledgerEntryId = entry.entryId
-        }
-
-        val result = ValidationResult(
-            valid = passed,
-            payloadHash = payloadHash,
-            reason = if (passed) "Validated against Avera Ground-Truth Engine" else "Rule failure",
-            failures = failures,
-            ledgerEntryId = ledgerEntryId,
-            invariantConflicts = invariantConflicts
-        )
-
+        val t = timestamp ?: System.currentTimeMillis()
+        val result = stateEngine.verifySignal(source, t, category, rawJsonData)
         _validationHistory.update { listOf(result) + it }
+        syncStateFromEngine()
         return result
     }
 
-    // ── Honeypot Perimeter Defense ─────────────────────────────────────────────
-    fun classifyPathSeverity(path: String): String {
-        val lower = path.lowercase(Locale.ROOT)
-        return when {
-            lower.contains("admin") || lower.contains("config") || lower.contains("env") ||
-                    lower.contains(".git") || lower.contains("wp-login") || lower.contains("phpmyadmin") -> "critical"
-            lower.contains("login") || lower.contains("auth") || lower.contains("api/v") -> "warning"
-            else -> "info"
+    /**
+     * Submit to the low-power background worker pipeline for edge batching.
+     */
+    fun enqueueSignalForVerification(
+        source: String,
+        timestamp: Long,
+        category: String,
+        rawJsonData: String,
+        onComplete: (ValidationResult) -> Unit
+    ) {
+        repositoryScope.launch {
+            pipeline.submit(source, timestamp, category, rawJsonData) { res ->
+                _validationHistory.update { listOf(res) + it }
+                syncStateFromEngine()
+                onComplete(res)
+            }
         }
+    }
+
+    // ── Honeypot Perimeter Defense (Low-Power Path Classification) ───────────
+    fun classifyPathSeverity(path: String): String {
+        // Fast-path character scanning without regex overhead or string allocations
+        val len = path.length
+        if (len == 0) return "info"
+
+        // Critical detection
+        if (path.contains("admin", ignoreCase = true) ||
+            path.contains("config", ignoreCase = true) ||
+            path.contains("env", ignoreCase = true) ||
+            path.contains(".git", ignoreCase = true) ||
+            path.contains("wp-login", ignoreCase = true) ||
+            path.contains("phpmyadmin", ignoreCase = true)) {
+            return "critical"
+        }
+
+        // Warning detection
+        if (path.contains("login", ignoreCase = true) ||
+            path.contains("auth", ignoreCase = true) ||
+            path.contains("api/v", ignoreCase = true)) {
+            return "warning"
+        }
+
+        return "info"
     }
 
     fun recordProbe(
@@ -273,9 +173,8 @@ class ProtocolRepository {
     ): Pair<ThreatEvent, String> {
         val severity = classifyPathSeverity(path)
         val id = UUID.randomUUID().toString()
-        val timestamp = nowIso()
-        val rawData = "$ip$method$path${headers.entries.sortedBy { it.key }.joinToString()}"
-        val fingerprint = sha256(rawData)
+        val timestamp = System.currentTimeMillis().toString()
+        val fingerprint = FastCrypto.sha256("$ip$method$path")
 
         val isAutoBlocked = severity == "critical" || _blocklist.value.contains(ip)
         if (severity == "critical") {
@@ -297,23 +196,13 @@ class ProtocolRepository {
 
         _threatEvents.update { listOf(threat) + it.take(99) }
 
-        // Also record threat onto SumerA ledger
-        val threatJson = JSONObject().apply {
-            put("threat_id", id)
-            put("attacker_ip", ip)
-            put("severity", severity)
-            put("fingerprint", fingerprint)
-            put("path", path)
-            put("method", method)
-            put("blocked", isAutoBlocked)
-        }.toString()
-        appendLedgerEntry("THREAT", threatJson)
+        // Append THREAT record directly to SumerA ledger
+        appendLedgerEntry("THREAT", "{\"threat_id\":\"$id\",\"ip\":\"$ip\",\"severity\":\"$severity\",\"blocked\":$isAutoBlocked}")
 
         // Dynamic icon alert update
         updateDynamicIconState(severity)
 
-        // Plausible decoy token response (PHP/7.4.3 decoy emulation)
-        val fakeToken = sha256(UUID.randomUUID().toString()).take(32)
+        val fakeToken = FastCrypto.sha256(id).take(32)
         val decoyResponse = "HTTP/1.1 200 OK\nX-Powered-By: PHP/7.4.3\nContent-Type: application/json\n\n{\"status\":\"ok\",\"token\":\"$fakeToken\"}"
 
         return Pair(threat, decoyResponse)
@@ -341,7 +230,7 @@ class ProtocolRepository {
 
     // ── Paws Connect Identity Network ──────────────────────────────────────────
     fun deriveNodeId(species: String, primaryMarkingHash: String, stewardSignature: String): String {
-        return sha256("$species:$primaryMarkingHash:$stewardSignature")
+        return FastCrypto.sha256("$species:$primaryMarkingHash:$stewardSignature")
     }
 
     fun registerPawsNode(
@@ -357,19 +246,11 @@ class ProtocolRepository {
 
         val nodeId = deriveNodeId(species, primaryMarkingHash, stewardSignature)
         if (_pawsNodes.value.any { it.nodeId == nodeId }) {
-            return Pair(false, null) // Already exists
+            return Pair(false, null)
         }
 
-        // Validate signal via Avera Engine
-        val payloadObj = JSONObject().apply {
-            put("source", "paws-connect")
-            put("species", species)
-            put("node_id", nodeId)
-            put("primary_marking_hash", primaryMarkingHash)
-            put("chip_identifier", chipIdentifier ?: "")
-            put("steward_signature", stewardSignature)
-        }
-        val valResult = validatePayload("paws-connect", System.currentTimeMillis(), "PAWS_IDENTITY", payloadObj.toString())
+        val payload = "{\"source\":\"paws-connect\",\"species\":\"$species\",\"node_id\":\"$nodeId\"}"
+        val valResult = validatePayload("paws-connect", System.currentTimeMillis(), "PAWS_IDENTITY", payload)
 
         val node = PawsIdentityNode(
             nodeId = nodeId,
@@ -380,7 +261,7 @@ class ProtocolRepository {
             ),
             stewardSignature = stewardSignature,
             immutableLedgerRecord = immutableLedgerRecord,
-            createdAt = nowIso(),
+            createdAt = System.currentTimeMillis().toString(),
             ledgerEntryId = valResult.ledgerEntryId
         )
 
@@ -393,75 +274,8 @@ class ProtocolRepository {
         return node.stewardSignature.trim() == signature.trim()
     }
 
-    // ── Aggregated Metrics ─────────────────────────────────────────────────────
-    fun getMetrics(): ProtocolMetrics {
-        val ledger = _ledgerEntries.value
-        val validations = _validationHistory.value
-        return ProtocolMetrics(
-            totalLedgerEntries = ledger.size,
-            isChainValid = verifyChainIntegrity(),
-            totalValidations = validations.size,
-            acceptedValidations = validations.count { it.valid },
-            rejectedValidations = validations.count { !it.valid },
-            threatsCaptured = _threatEvents.value.size,
-            blocklistSize = _blocklist.value.size,
-            registeredPawsNodes = _pawsNodes.value.size
-        )
-    }
-
-    // ── Initial State Seeding ──────────────────────────────────────────────────
-    private fun seedInitialState() {
-        // 1. Seed Genesis Invariants from STATE_ENGINE_SPEC.md
-        val inv1 = StateInvariant(
-            id = "INV-001",
-            timestamp = "2026-07-30T15:33:00Z",
-            priority = "P0",
-            category = "DIRECTIVE",
-            key = "user_communication_style",
-            value = "Direct, explicit, grounded. Zero fluff, no sugarcoating, no mincing words.",
-            immutable = true
-        )
-        val inv2 = StateInvariant(
-            id = "INV-002",
-            timestamp = "2026-07-30T15:33:00Z",
-            priority = "P0",
-            category = "CORRECTION",
-            key = "terminology_rules",
-            value = "Use 'expound' not 'expand'; use 'blinders' not 'blinkers'.",
-            immutable = true
-        )
-        val inv3 = StateInvariant(
-            id = "INV-003",
-            timestamp = "2026-07-30T15:33:00Z",
-            priority = "P1",
-            category = "PROJECT_SPEC",
-            key = "active_architecture",
-            value = "SumerAvera Protocol (SVP) - Intent-Driven Decentralized Computing & Ground-Truth Verification Engine.",
-            immutable = false
-        )
-        _invariants.value = listOf(inv1, inv2, inv3)
-
-        // 2. Seed Genesis Blocks in SumerA Layer
-        appendLedgerEntry(
-            "SYSTEM",
-            JSONObject().apply {
-                put("protocol", "SumerAvera Protocol (SVP)")
-                put("version", "1.0.0")
-                put("consensus", "Append-Only SHA-256 Merkle Chain")
-                put("state_engine", "Deterministic Invariant Gate")
-            }.toString()
-        )
-
-        appendLedgerEntry(
-            "INVARIANT",
-            JSONObject().apply {
-                put("action", "SEED_GENESIS_INVARIANTS")
-                put("count", 3)
-                put("invariants", listOf("INV-001", "INV-002", "INV-003"))
-            }.toString()
-        )
-
-        // 3. Seed Sample Identity Nodes for Paws Connect
+    // ── Seed Sample Data ───────────────────────────────────────────────────────
+    private fun seedSampleData() {
         val sampleNode1 = PawsIdentityNode(
             nodeId = deriveNodeId("canine", "7a8b9c0d1e2f3a4b", "secp256k1_steward_9901"),
             speciesClassification = "canine",
@@ -480,18 +294,10 @@ class ProtocolRepository {
         )
         _pawsNodes.value = listOf(sampleNode1, sampleNode2)
 
-        // 4. Seed Honeypot Telemetry Sample
         recordProbe(
             ip = "198.51.100.42",
             method = "GET",
-            path = "/.env",
-            headers = mapOf("user-agent" to "curl/7.81.0", "host" to "node.svp.net")
-        )
-        recordProbe(
-            ip = "203.0.113.19",
-            method = "POST",
-            path = "/wp-login.php",
-            headers = mapOf("user-agent" to "Python-urllib/3.10", "host" to "node.svp.net")
+            path = "/.env"
         )
     }
 }
