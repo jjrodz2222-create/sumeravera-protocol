@@ -1,0 +1,6 @@
+*.db
+*.db-wal
+*.db-shm
+*.jar
+states/
+.wget-hsts
