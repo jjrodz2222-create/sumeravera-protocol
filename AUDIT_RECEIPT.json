@@ -1,0 +1,7 @@
+{
+  "total_records": 125,
+  "first_block_hash": "972a4f1a36c24326688a3dce89222b280f6e6bf6fd2ec924abec15fe4910bb18",
+  "latest_block_hash": "8f71b010142b16385dfc531aca07174d7ef26cc658302c95521a3712b41fdaca",
+  "tamper_status": "INVARIANT_VERIFIED",
+  "quarantined_events": 16
+}
