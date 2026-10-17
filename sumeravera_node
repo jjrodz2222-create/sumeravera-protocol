@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+import sys
+from protocol_lockdown import get_connection, initialize_lockdown_storage, process_ingress_secure
+
+def main():
+    conn = get_connection("ledger.db")
+    initialize_lockdown_storage(conn)
+    print("=== SumerAvera Sovereign Edge Node ===")
+    
+    # Process standard self-test
+    s1, h1 = process_ingress_secure(conn, {
+        "source": "native_executable",
+        "event_type": "startup",
+        "data": {"version": "v1.0-local"}
+    })
+    print(f"Startup Ingress Status: [{s1}] Hash: {h1[:16]}...")
+    
+    cur = conn.cursor()
+    cur.execute("SELECT COUNT(*) FROM state_ledger;")
+    v_cnt = cur.fetchone()[0]
+    cur.execute("SELECT COUNT(*) FROM quarantine_ledger;")
+    q_cnt = cur.fetchone()[0]
+    print(f"Current State Ledger: {v_cnt} records | Honeypot: {q_cnt} records")
+    conn.close()
+
+if __name__ == "__main__":
+    main()
