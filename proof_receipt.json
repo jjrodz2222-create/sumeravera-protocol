@@ -1,0 +1,39 @@
+{
+  "protocol": "SumerAvera-v2.5",
+  "target_record": {
+    "sequence_id": 142,
+    "entry_hash": "4705cb20a3ce2f83ff221119a55ef9f2c49a458d6f2322542f136d17f289ea39",
+    "payload": {
+      "data": {
+        "battery_v": 12.7,
+        "load_a": 3.8,
+        "seq": 6
+      },
+      "event_type": "diagnostic_pulse",
+      "source": "tow_telematics_bench"
+    }
+  },
+  "epoch_seal": {
+    "epoch_id": 16,
+    "range": [
+      139,
+      146
+    ],
+    "merkle_root": "12c6651f62888a14d5ea19627204eeb2d467601bda69cd5969d24206b1f6a4bc",
+    "sealed_at": 1792380844.7983599
+  },
+  "proof_path": [
+    [
+      "8738957f12b6b919f1d5921d0319921ff777a1f85f14642818ac8b83f05123e9",
+      "L"
+    ],
+    [
+      "1e1503fcd0eafeaa68b2f3ab2d0529847fe55cd3060d93b35c6c48ce1abe7db9",
+      "L"
+    ],
+    [
+      "c4252cf6cc68c2a42d82b7d22e6a775aa3264c61dffe346b3754ba4392433669",
+      "R"
+    ]
+  ]
+}
