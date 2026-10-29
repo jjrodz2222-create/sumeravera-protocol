@@ -1,0 +1,23 @@
+name: Protocol Verification
+
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install fastapi uvicorn
+      - name: Run Core Tests
+        run: |
+          python direct_test.py
+      - name: Run Standalone Invariant Audit
+        run: |
+          chmod +x run_audit_suite.sh
+          ./run_audit_suite.sh python3 audit_verify_standalone.py proof_re
