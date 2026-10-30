@@ -4,9 +4,10 @@
 *.jar
 states/
 .wget-hsts
-.*
-!.gitignore
 __pycache__/
 *.log
 sumeravera-master/
 *.tar.gz
+.DS_Store
+.env
+audit_output.log
