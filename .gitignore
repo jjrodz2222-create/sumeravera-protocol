@@ -11,3 +11,15 @@ sumeravera-master/
 .DS_Store
 .env
 audit_output.log
+.Xauthority
+.bash_history
+.bash_logout
+.bashrc
+.cache/
+.config/
+.gitconfig
+.local/
+.profile
+.sommelierrc
+.ssh/
+.sudo_as_admin_successful

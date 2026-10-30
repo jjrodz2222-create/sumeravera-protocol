@@ -1,0 +1,20 @@
+====================================================
+        SUMERAVERA PROTOCOL : PROVENANCE SHEET      
+====================================================
+Copyright Owner : John Jamie Rodriguez (jjrodz2222)
+Timestamp       : 1792994002.246582
+Protocol Engine : SumerAvera Protocol (Nabu-Vera Routing)
+====================================================
+
+File: sumeravera_core.py
+SHA-256 Hash: e978c9d92989e2b49b0df7137664b9381033c6957ddf666e109f47d19af378e1
+Genesis ID (Watermark): f7b80dc35f775984a7b2f60945864dbcda50f84d6ad7a0e3688b4e4c66bbe7f9
+----------------------------------------------------
+File: SumerAvera.tla
+SHA-256 Hash: 0ae7a289d990d04cf1ece4ff7ad89ec8438ea6a30f9325ef5b97b9377e61ae20
+Genesis ID (Watermark): df4728bab1ed90a854e758639ebc00577f3606107c799ec16188b374a194a878
+----------------------------------------------------
+File: SumerAvera.cfg
+SHA-256 Hash: b7affac506821eb35da03e69b535647481391d91af7ab23a055e58001d4570b1
+Genesis ID (Watermark): fb3024055119db6f58a8b83c96bd186f5dc3718f71d68d1b4e992d1c33e5c5aa
+----------------------------------------------------
