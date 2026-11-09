@@ -24,3 +24,6 @@ audit_output.log
 .ssh/
 .sudo_as_admin_successful
 sumeravera-protocol/
+.env
+*.key
+protocol_ledger.db
