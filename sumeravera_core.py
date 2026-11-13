@@ -10,19 +10,30 @@ from fastapi import FastAPI, HTTPException, Header, Request
 app = FastAPI(title="SumerAvera Core Engine", version="1.0.0")
 
 # 1. Enforce Key Configuration
+# Fail closed: the service refuses to start without a provisioned key.
+# There is no fallback secret. Set SUMERAVERA_SECRET_KEY in the environment
+# of the machine that runs this process; never commit a key value.
 PRIMARY_KEY = os.environ.get("SUMERAVERA_SECRET_KEY")
 if not PRIMARY_KEY:
-    # Fail fast if security key is not provisioned
-    print("CRITICAL: SUMERAVERA_SECRET_KEY not set. Using local development fallback.")
-    PRIMARY_KEY = "svp_local_dev_secret_key_32bytes_min"
+    raise RuntimeError(
+        "CRITICAL: SUMERAVERA_SECRET_KEY environment variable is not set. "
+        "SumerAvera Core refuses to start without a provisioned key."
+    )
 
 SHARED_SECRET = PRIMARY_KEY.encode("utf-8")
 NONCE_EXPIRY_SECONDS = 300
 
 # 2. Device Identity Keyring
+# A node key exists in the keyring only when its env var is set explicitly.
+# A device that presents an unknown device_id is rejected; a node never
+# silently falls back to the primary key.
 DEVICE_KEYRING = {
-    "node_alpha_01": os.environ.get("KEY_NODE_ALPHA", PRIMARY_KEY).encode("utf-8"),
-    "node_beta_02": os.environ.get("KEY_NODE_BETA", PRIMARY_KEY).encode("utf-8"),
+    device_id: os.environ[env_var].encode("utf-8")
+    for device_id, env_var in (
+        ("node_alpha_01", "KEY_NODE_ALPHA"),
+        ("node_beta_02", "KEY_NODE_BETA"),
+    )
+    if os.environ.get(env_var)
 }
 
 # 3. Persistent SQLite Nonce Engine (Survives Restarts)
@@ -59,17 +70,22 @@ def verify_ingress_packet(payload: bytes, signature: str, nonce: str, timestamp:
     if abs(now - timestamp) > NONCE_EXPIRY_SECONDS:
         return False
 
-    # Replay Check
-    if not register_nonce(nonce, timestamp):
+    # Key Resolution: an unknown device_id is rejected outright; a node never
+    # falls back to the shared secret.
+    if device_id is not None and device_id not in DEVICE_KEYRING:
         return False
-
-    # Key Resolution
     secret = DEVICE_KEYRING.get(device_id, SHARED_SECRET) if device_id else SHARED_SECRET
 
-    # HMAC-SHA256 Constant-Time Verification
+    # HMAC-SHA256 Constant-Time Verification.
+    # The signature is verified BEFORE the nonce is recorded: a packet with a
+    # bad signature must never consume a nonce or leave a mark in the store.
     message = f"{nonce}:{int(timestamp)}:".encode("utf-8") + payload
     expected_sig = hmac.new(secret, message, hashlib.sha256).hexdigest()
-    return hmac.compare_digest(expected_sig, signature)
+    if not hmac.compare_digest(expected_sig, signature):
+        return False
+
+    # Replay Check: only a signature-verified packet registers its nonce.
+    return register_nonce(nonce, timestamp)
 
 @app.get("/")
 def get_status():
