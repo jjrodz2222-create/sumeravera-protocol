@@ -15,6 +15,11 @@ jobs:
         run: |
           pip install fastapi uvicorn
       - name: Run Core Tests
+        # Test-only key for CI: signs test packets only. Not a production
+        # secret, and never a real key. The core is fail-closed by design,
+        # so the import in direct_test.py needs *some* key set to run.
+        env:
+          SUMERAVERA_SECRET_KEY: ci-test-only-key-not-a-production-secret
         run: |
           python direct_test.py
       - name: Run Standalone Invariant Audit
