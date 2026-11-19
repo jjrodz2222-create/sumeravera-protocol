@@ -79,6 +79,20 @@ def test_future_timestamp_rejected():
     assert g.verify_edge_ingress(PAYLOAD, _sig_new("n6", str(fut)), "n6", fut) is False
 
 
+def test_future_timestamp_beyond_5s_rejected():
+    # Asymmetric skew: more than 5s in the future is rejected.
+    g = eg.EdgeTelemetryGuardian()
+    fut = _now() + 10
+    assert g.verify_edge_ingress(PAYLOAD, _sig_new("n6b", str(fut)), "n6b", fut) is False
+
+
+def test_future_timestamp_within_5s_accepted():
+    # A small future skew (clock drift) is still tolerated.
+    g = eg.EdgeTelemetryGuardian()
+    fut = _now() + 3
+    assert g.verify_edge_ingress(PAYLOAD, _sig_new("n6c", str(fut)), "n6c", fut) is True
+
+
 def test_old_payload_only_signature_rejected():
     g = eg.EdgeTelemetryGuardian()
     assert g.verify_edge_ingress(PAYLOAD, _sig_old(), "n7", _now()) is False
@@ -123,6 +137,15 @@ def test_empty_nonce_rejected():
     assert g.verify_edge_ingress(PAYLOAD, _sig_new("", str(now)), "", now) is False
 
 
+def test_colon_nonce_rejected():
+    # A correctly signed frame whose nonce contains ':' must still be
+    # rejected: the ':' would make nonce:timestamp:payload ambiguous.
+    g = eg.EdgeTelemetryGuardian()
+    now = _now()
+    assert g.verify_edge_ingress(PAYLOAD, _sig_new("a:b", str(now)), "a:b", now) is False
+    assert "a:b" not in g.nonce_cache
+
+
 def test_expired_nonce_pruned_after_ttl():
     old_ttl = eg.NONCE_TTL
     try:
@@ -136,17 +159,38 @@ def test_expired_nonce_pruned_after_ttl():
         eg.NONCE_TTL = old_ttl
 
 
-def test_cap_saturation_evicts_oldest():
+def test_cap_saturation_fail_closed():
+    # Old behavior evicted the oldest live nonce; hardened behavior rejects
+    # new ingress instead of opening a replay window.
     old_cap = eg.MAX_NONCE_CACHE_SIZE
     try:
         eg.MAX_NONCE_CACHE_SIZE = 2
         g = eg.EdgeTelemetryGuardian()
         now = _now()
-        for n in ("a", "b", "c"):
-            assert g.verify_edge_ingress(PAYLOAD, _sig_new(n, str(now)), n, now) is True
-        assert len(g.nonce_cache) == 2 and "a" not in g.nonce_cache
+        assert g.verify_edge_ingress(PAYLOAD, _sig_new("a", str(now)), "a", now) is True
+        assert g.verify_edge_ingress(PAYLOAD, _sig_new("b", str(now)), "b", now) is True
+        assert g.verify_edge_ingress(PAYLOAD, _sig_new("c", str(now)), "c", now) is False
+        assert len(g.nonce_cache) == 2 and "a" in g.nonce_cache and "b" in g.nonce_cache
     finally:
         eg.MAX_NONCE_CACHE_SIZE = old_cap
+
+
+def test_cap_saturation_allows_after_prune():
+    # After pruning, expired entries free space, so new ingress is accepted.
+    old_cap = eg.MAX_NONCE_CACHE_SIZE
+    old_ttl = eg.NONCE_TTL
+    try:
+        eg.MAX_NONCE_CACHE_SIZE = 2
+        eg.NONCE_TTL = 0.05
+        g = eg.EdgeTelemetryGuardian()
+        now = _now()
+        assert g.verify_edge_ingress(PAYLOAD, _sig_new("a", str(now)), "a", now) is True
+        assert g.verify_edge_ingress(PAYLOAD, _sig_new("b", str(now)), "b", now) is True
+        time.sleep(0.1)
+        assert g.verify_edge_ingress(PAYLOAD, _sig_new("c", str(now)), "c", now) is True
+    finally:
+        eg.MAX_NONCE_CACHE_SIZE = old_cap
+        eg.NONCE_TTL = old_ttl
 
 
 def _run_import_with_env(env_overrides):

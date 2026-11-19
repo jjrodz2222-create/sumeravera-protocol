@@ -7,8 +7,8 @@ Changes vs. public HEAD 0caf4dbb:
      must be set and >= 32 bytes. Refuses to start (RuntimeError) otherwise.
   2. Monotonic TTL enforcement: NONCE_TTL (65.0s) is enforced via time.monotonic()
      so NTP clock steps cannot stretch windows or prematurely evict nonces.
-  3. Bounded O(1) cache: MAX_NONCE_CACHE_SIZE = 1_000_000 with FIFO eviction
-     via OrderedDict.
+  3. Bounded O(1) cache: MAX_NONCE_CACHE_SIZE = 1_000_000 with fail-closed
+     backpressure at capacity (never evict an unexpired nonce).
   4. Dead grace-period logic removed: empty/missing nonces are rejected
      unconditionally across the entire process lifecycle.
   5. BREAKING SIGNATURE CHANGE: HMAC-SHA256 authenticates canonicalized
@@ -16,6 +16,10 @@ Changes vs. public HEAD 0caf4dbb:
      converging with edge_guardian.py and sumeravera_core.py. Senders must sign
      integer Unix seconds. Set SUMER_ALLOW_LEGACY_SIG=1 temporarily during live
      emitter migration. The method now takes a `timestamp` argument.
+  6. Hardened 2026-11-15 (approved): asymmetric skew bounds (65s past / 5s
+     future) instead of a symmetric +/-65s window; ':' rejected in nonces
+     (delimiter-collision fix); fail-closed backpressure when the cache
+     saturates with unexpired nonces.
 """
 import os
 import hmac
@@ -25,7 +29,8 @@ import time
 from collections import OrderedDict
 
 NONCE_TTL = 65.0
-MAX_CLOCK_SKEW = 65.0
+MAX_PAST_SKEW = 65.0
+MAX_FUTURE_SKEW = 5.0
 MAX_NONCE_CACHE_SIZE = 1_000_000
 MIN_SECRET_BYTES = 32
 
@@ -87,6 +92,10 @@ class ProtocolEdgeWidgetHandler:
         ):
             return False
 
+        # Prevent delimiter collision in nonce:timestamp:payload framing.
+        if ":" in nonce:
+            return False
+
         # Canonicalize sender timestamp to integer Unix seconds (converging with core)
         try:
             ts_val = float(timestamp)
@@ -99,7 +108,9 @@ class ProtocolEdgeWidgetHandler:
         ts_int = int(ts_val)
         ts_str = str(ts_int)
 
-        if abs(time.time() - ts_int) > MAX_CLOCK_SKEW:
+        # Asymmetric skew bounds: reject stale (>65s) and far-future (>5s) timestamps.
+        now_wall = time.time()
+        if (now_wall - ts_int) > MAX_PAST_SKEW or (ts_int - now_wall) > MAX_FUTURE_SKEW:
             return False
 
         # 1. Verify signature FIRST -- before reading or mutating nonce state.
@@ -113,9 +124,11 @@ class ProtocolEdgeWidgetHandler:
         if nonce in self.nonce_cache:
             return False
 
-        # 3. Record the nonce, enforcing the 1M O(1) FIFO bound.
+        # 3. Record the nonce. Fail-closed at capacity: after pruning, a full
+        # cache holds only unexpired nonces, so never evict a live one --
+        # reject new ingress (backpressure) instead.
         if len(self.nonce_cache) >= MAX_NONCE_CACHE_SIZE:
-            self.nonce_cache.popitem(last=False)
+            return False
         self.nonce_cache[nonce] = now_mono
         return True
 
