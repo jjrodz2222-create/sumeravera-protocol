@@ -29,13 +29,20 @@ the protocol repos.
 The gate fails closed: importing edge_guardian requires
 SUMERAVERA_SECRET_KEY (or legacy SUMER_SECRET_ZERO_DRIFT) to be set and
 >= 32 bytes, so this module refuses to load without a provisioned key.
+
+Threading: a single Gate1 may be shared across worker threads when
+constructed with ledger_db_path (one ledger connection per calling
+thread); a ledger_conn is only safe from the thread that created it,
+because a sqlite3 connection must never be shared across threads.
 """
 
+import sqlite3
+import threading
 import time
 from typing import Optional
 
 from edge_guardian import EdgeTelemetryGuardian
-from local_ledger import append_state_entry
+from local_ledger import append_state_entry, get_connection, initialize_ledger
 
 # A verified packet whose timestamp is this fresh is canonical.
 STABLE_DRIFT_SECONDS = 5.0
@@ -46,18 +53,62 @@ MAX_DRIFT_SECONDS = 65.0
 
 
 class Gate1:
-    """Minimal Gate 1: verify, route, and (for accepted packets) record."""
+    """Minimal Gate 1: verify, route, and (for accepted packets) record.
+
+    Ledger recording takes one of two forms:
+
+      * ``ledger_conn`` -- a caller-owned sqlite3 connection. The caller
+        must only use it from the thread that created it (a sqlite3
+        connection must never be shared across threads). Kept for
+        single-threaded callers and tests.
+      * ``ledger_db_path`` -- the gate opens one ledger connection per
+        calling thread, lazily, so a single Gate1 can be shared across
+        worker threads. This is the form a threaded server should use.
+        Must be a file path, not ":memory:" (each thread would get its
+        own separate in-memory database).
+
+    Pass one or the other, not both. When neither is given, the gate
+    verifies and routes but records nothing.
+    """
 
     def __init__(
         self,
         guardian: Optional[EdgeTelemetryGuardian] = None,
         ledger_conn=None,
+        ledger_db_path: Optional[str] = None,
     ) -> None:
+        if ledger_conn is not None and ledger_db_path is not None:
+            raise ValueError("pass ledger_conn or ledger_db_path, not both")
         self.guardian = guardian or EdgeTelemetryGuardian()
-        # ledger_conn is an sqlite3 connection opened on local_ledger's
-        # schema (see local_ledger.get_connection + initialize_ledger).
-        # When None, the gate verifies and routes but records nothing.
         self.ledger_conn = ledger_conn
+        self.ledger_db_path = ledger_db_path
+        self._ledger_local = threading.local()
+
+    def _ledger_connection(self):
+        """Return the connection route() should record on, or None."""
+        if self.ledger_conn is not None:
+            return self.ledger_conn
+        if self.ledger_db_path is None:
+            return None
+        conn = getattr(self._ledger_local, "conn", None)
+        if conn is not None:
+            try:
+                conn.execute("SELECT 1")
+            except sqlite3.ProgrammingError:
+                conn = None
+        if conn is None:
+            conn = get_connection(self.ledger_db_path)
+            initialize_ledger(conn)
+            self._ledger_local.conn = conn
+        return conn
+
+    def close(self) -> None:
+        """Close the calling thread's ledger connection, if the gate opened
+        one (ledger_db_path form). A no-op otherwise."""
+        conn = getattr(self._ledger_local, "conn", None)
+        if conn is not None:
+            conn.close()
+            del self._ledger_local.conn
 
     def route(
         self,
@@ -96,9 +147,10 @@ class Gate1:
 
         ledger_seq = None
         ledger_hash = None
-        if self.ledger_conn is not None:
+        ledger_conn = self._ledger_connection()
+        if ledger_conn is not None:
             ledger_seq, ledger_hash = append_state_entry(
-                self.ledger_conn,
+                ledger_conn,
                 {
                     "event": "gate1_ingress",
                     "tier": tier,

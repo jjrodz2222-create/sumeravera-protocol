@@ -1,5 +1,6 @@
 import os
 import sys
+import threading
 import time
 import hmac
 import hashlib
@@ -37,51 +38,138 @@ DEVICE_KEYRING = {
 }
 
 # 3. Persistent SQLite Nonce Engine (Survives Restarts)
+# One connection per thread: a sqlite3 connection must never be shared
+# across threads. check_same_thread=False only disables the thread check;
+# it does not make the connection thread-safe, and concurrent use
+# interleaves transaction state and corrupts writes. Each thread opens its
+# own connection lazily on first use, in WAL mode (like the ledger) with an
+# explicit auto-checkpoint policy, so concurrent writers serialize on the
+# write lock instead of interleaving. The FastAPI /verify endpoint runs on
+# the event-loop thread, so it simply gets that thread's connection.
+# A writer that loses a race for the write lock retries with bounded
+# exponential backoff; only a true duplicate nonce (IntegrityError) is a
+# replay.
 DB_PATH = "nonce_cache.db"
-conn = sqlite3.connect(DB_PATH, check_same_thread=False)
+WAL_AUTOCHECKPOINT_PAGES = 1000
+BUSY_TIMEOUT_MS = 5000
+_NONCE_MAX_ATTEMPTS = 10
 
-with conn:
-    conn.execute("""
-        CREATE TABLE IF NOT EXISTS seen_nonces (
-            nonce TEXT PRIMARY KEY,
-            timestamp REAL
-        )
-    """)
-    conn.execute("CREATE INDEX IF NOT EXISTS idx_timestamp ON seen_nonces(timestamp)")
+_nonce_local = threading.local()
+
+
+def _is_busy(exc: Exception) -> bool:
+    msg = str(exc).lower()
+    return "locked" in msg or "busy" in msg
+
+
+def _backoff(attempt: int) -> float:
+    return min(0.05, 0.001 * (2 ** attempt))
+
+
+def _get_nonce_conn():
+    """Return the calling thread's nonce-store connection, opened on first
+    use. A stored connection that was closed by its owner is reopened."""
+    conn = getattr(_nonce_local, "conn", None)
+    if conn is not None:
+        try:
+            conn.execute("SELECT 1")
+        except sqlite3.ProgrammingError:
+            conn = None
+    if conn is None:
+        # Same setup race as local_ledger.get_connection: several threads
+        # opening their nonce connection at once can collide on the
+        # journal-mode change, so busy_timeout goes first and the whole
+        # open retries on busy.
+        last_exc = None
+        for attempt in range(_NONCE_MAX_ATTEMPTS):
+            conn = sqlite3.connect(DB_PATH)
+            try:
+                conn.execute(f"PRAGMA busy_timeout = {BUSY_TIMEOUT_MS};")
+                conn.execute("PRAGMA journal_mode = WAL;")
+                conn.execute("PRAGMA synchronous = NORMAL;")
+                conn.execute(f"PRAGMA wal_autocheckpoint = {WAL_AUTOCHECKPOINT_PAGES};")
+                with conn:
+                    conn.execute("""
+                        CREATE TABLE IF NOT EXISTS seen_nonces (
+                            nonce TEXT PRIMARY KEY,
+                            timestamp REAL
+                        )
+                    """)
+                    conn.execute("CREATE INDEX IF NOT EXISTS idx_timestamp ON seen_nonces(timestamp)")
+                break
+            except sqlite3.OperationalError as e:
+                last_exc = e
+                try:
+                    conn.close()
+                except Exception:
+                    pass
+                if _is_busy(e) and attempt < _NONCE_MAX_ATTEMPTS - 1:
+                    time.sleep(_backoff(attempt))
+                    continue
+                raise
+        else:
+            raise last_exc
+        _nonce_local.conn = conn
+    return conn
+
 
 def prune_expired_nonces(now: float):
     cutoff = now - NONCE_EXPIRY_SECONDS
-    with conn:
-        conn.execute("DELETE FROM seen_nonces WHERE timestamp < ?", (cutoff,))
+    try:
+        with _get_nonce_conn() as conn:
+            conn.execute("DELETE FROM seen_nonces WHERE timestamp < ?", (cutoff,))
+    except sqlite3.OperationalError:
+        # Best-effort maintenance: a prune that loses a race with another
+        # writer must not fail the verification it precedes. A stale nonce
+        # left behind is still rejected by the timestamp check, and the
+        # next prune retries.
+        pass
+
 
 def register_nonce(nonce: str, timestamp: float) -> bool:
     prune_expired_nonces(timestamp)
-    try:
-        with conn:
-            conn.execute("INSERT INTO seen_nonces (nonce, timestamp) VALUES (?, ?)", (nonce, timestamp))
-        return True
-    except sqlite3.IntegrityError:
-        return False  # Nonce collision / Replay attack
+    for attempt in range(_NONCE_MAX_ATTEMPTS):
+        try:
+            with _get_nonce_conn() as conn:
+                conn.execute("INSERT INTO seen_nonces (nonce, timestamp) VALUES (?, ?)", (nonce, timestamp))
+            return True
+        except sqlite3.IntegrityError:
+            return False  # Nonce collision / Replay attack
+        except sqlite3.OperationalError as e:
+            if _is_busy(e) and attempt < _NONCE_MAX_ATTEMPTS - 1:
+                time.sleep(_backoff(attempt))
+                continue
+            raise
+    return False
 
 # 4. State ledger wiring
 # A verified ingress is recorded in the hash-chained state ledger
-# (local_ledger.py). The ledger connection is opened lazily on first use so
-# importing this module never touches a ledger file. The database path comes
-# from SUMERAVERA_LEDGER_DB (default "ledger.db"); ledger files are covered
-# by .gitignore (*.db).
+# (local_ledger.py). The ledger connection is opened lazily on first use,
+# one per thread (a sqlite3 connection must never be shared across
+# threads), so importing this module never touches a ledger file. The
+# database path comes from SUMERAVERA_LEDGER_DB (default "ledger.db");
+# ledger files are covered by .gitignore (*.db).
 LEDGER_DB_PATH = os.environ.get("SUMERAVERA_LEDGER_DB", "ledger.db")
-_ledger_conn = None
+_ledger_local = threading.local()
 
 
 def get_ledger_connection():
-    """Open (once) and return the state-ledger connection, initialized."""
-    global _ledger_conn
-    if _ledger_conn is None:
+    """Open (on first use by the calling thread) and return the calling
+    thread's state-ledger connection, initialized. A stored connection
+    that was closed by its owner is reopened."""
+    conn = getattr(_ledger_local, "conn", None)
+    if conn is not None:
+        try:
+            conn.execute("SELECT 1")
+        except sqlite3.ProgrammingError:
+            conn = None
+    if conn is None:
         import local_ledger
 
-        _ledger_conn = local_ledger.get_connection(LEDGER_DB_PATH)
-        local_ledger.initialize_ledger(_ledger_conn)
-    return _ledger_conn
+        conn = local_ledger.get_connection(LEDGER_DB_PATH)
+        local_ledger.initialize_ledger(conn)
+        _ledger_local.conn = conn
+    return conn
 
 
 def _record_verified_ingress(ledger_conn, nonce: str, timestamp: float, device_id: Optional[str]):
