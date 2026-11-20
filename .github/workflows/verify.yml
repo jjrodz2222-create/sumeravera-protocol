@@ -13,16 +13,23 @@ jobs:
           python-version: '3.10'
       - name: Install dependencies
         run: |
-          pip install fastapi uvicorn
-      - name: Run Core Tests
+          pip install fastapi uvicorn pytest
+      - name: Run pytest suite
         # Test-only key for CI: signs test packets only. Not a production
-        # secret, and never a real key. The core is fail-closed by design,
-        # so the import in direct_test.py needs *some* key set to run.
+        # secret, and never a real key. The test modules also set their own
+        # throwaway key; this env var covers direct_test.py and the audit.
+        env:
+          SUMERAVERA_SECRET_KEY: ci-test-only-key-not-a-production-secret
+        run: |
+          python -m pytest tests/ -q
+      - name: Run Core Tests
         env:
           SUMERAVERA_SECRET_KEY: ci-test-only-key-not-a-production-secret
         run: |
           python direct_test.py
       - name: Run Standalone Invariant Audit
+        env:
+          SUMERAVERA_SECRET_KEY: ci-test-only-key-not-a-production-secret
         run: |
           chmod +x run_audit_suite.sh
           ./run_audit_suite.sh python3 audit_verify_standalone.py proof_re
