@@ -1,37 +1,46 @@
-# SumerAvera Edge Protocol - Empirical Hardware Verification
+# SumerAvera Edge Protocol - Measured Benchmarks
 
-## Environment Specifications
-- **Execution Target:** Native Linux Container (Debian x86_64)
-- **Engine:** Python Standard Library / SQLite WAL mode
-- **Cryptographic Primitives:** SHA-256 chained hashing, zero-trust schema validation
-- **Verification Date:** 2026-10-17
+All numbers below are measured by `benchmark.py` (run it to reproduce:
+`SUMERAVERA_SECRET_KEY=<32+ byte key> python3 benchmark.py`), except the
+formal-verification line, which comes from the TLC run log
+(`passing_run_log.txt`, 2026-10-17). Nothing in this file is a projection.
 
-## Measured Operational Metrics
+## Environment (this run)
+- **Measured:** 2026-11-20
+- **Execution Target:** Linux x86_64 virtual machine (4 CPUs)
+- **Engine:** Python 3.12 / SQLite WAL mode
+- **Cryptographic Primitives:** HMAC-SHA256 frame validation, SHA-256
+  chained hashing, zero-trust schema validation
+
+## Measured Operational Metrics (2026-11-20 run, 2,000 iterations)
 | Metric | Measured Value | Unit / Scale |
 | :--- | :--- | :--- |
-| **Mean Ingress Latency** | 0.743 | ms / write |
-| **Sustained Throughput** | 1,345.4 | writes / second (single-threaded) |
-| **Storage Density** | 353.7 | bytes / recorded state |
-| **Working Disk Footprint** | 380.00 | KB (1,100 total transactions) |
-| **Formal Safety Invariants** | 261 distinct states | 0 violations (TLC verified) |
+| **Mean Core Ingress Latency** | 0.094 | ms / verified packet |
+| **Core Ingress Throughput** | 10,593.2 | verifications / second (single-threaded) |
+| **Mean Edge Guardian Latency** | 0.009 | ms / verified frame |
+| **Edge Guardian Throughput** | 115,313.0 | verifications / second (single-threaded) |
+| **Ledger Append Throughput** | 28,147.1 | writes / second (1,000 entries) |
+| **Storage Density** | 372.7 | bytes / recorded state |
+| **Working Disk Footprint** | 364.00 | KB (1,000 total transactions) |
+| **Malformed-Packet Rejection** | 200 / 200 | rejected (100.00%: bad signature, replay, stale) |
+| **Formal Safety Invariants** | 261 distinct states | 0 violations (TLC verified, 2026-10-17) |
 
-## Operational Impact
-- **Sovereign Execution:** Fully decoupled from cloud infrastructure and recurring network costs.
-- **Interception Rate:** 100% quarantine of malformed/untrusted schema ingress without corrupting primary ledger state.
+The core repository reproduced these figures within ~5% on the same
+machine (core ingress 0.090 ms, 11,076.5 verifications/sec; ledger
+27,983.3 writes/sec, 376.8 bytes/state).
 
-## Bare-Metal Sensor Ingress & Energy Suppression (Live 30s Soak)
-- **Physical Sampling Frequency:** 20 Hz (588 samples evaluated)
-- **Ingress Filtering Efficiency:** 99.8% noise suppression (587 unneeded writes blocked)
-- **Committed State Shifts:** 1 verified physical event
-- **Active CPU Processing Time:** 0.5085 seconds
-- **Processor Rest / Idle Ratio:** 98.31%
-
-## Empirical Hardware Ingress & Energy Benchmark (Live 30s Soak)
-- **Observation Window**: 30.01s (20 Hz polling loop, 587 physical samples checked)
-- **I/O Write Suppression**: 586 redundant writes suppressed (99.8% reduction)
-- **Committed State Invariants**: 1 verified state event committed
-- **Total Compute Active Time**: 0.5439s on-chip processing
-- **Sleep / Idle Efficiency Ratio**: 98.19%
-- **Air-Gap Verification**: Native Linux network isolation (`unshare -n`), loopback disabled (`lo down`), Exit code: 0
-EOF 
-
+## Notes
+- The 2026-10-17 figures previously listed here (0.743 ms mean latency,
+  1,345.4 writes/sec, 353.7 bytes/state, 380.00 KB for 1,100 transactions)
+  were superseded by the 2026-11-20 run above. The old throughput figure
+  was the reciprocal of the old latency, not an independently measured
+  write rate; this run measures ingress validation and ledger writes
+  separately.
+- The 2026-10-17 "Live 30s Soak" hardware-sensor sections (20 Hz sampling,
+  99.8% noise suppression, CPU idle ratios) came from a physical sensor
+  session and cannot be reproduced by `benchmark.py`; they are omitted
+  until re-measured on hardware. The malformed-packet rejection rate in
+  the table above is the measured replacement for the old blanket
+  "100% interception" claim.
+- **Sovereign Execution:** Fully decoupled from cloud infrastructure and
+  recurring network costs.

@@ -1,6 +1,13 @@
+import os
 import time
 import hmac
 import hashlib
+
+# Test-only key: used only when no key is provisioned in the environment
+# (CI sets SUMERAVERA_SECRET_KEY itself; see .github/workflows/verify.yml).
+# This is a throwaway test value, never a real secret.
+os.environ.setdefault("SUMERAVERA_SECRET_KEY", "K" * 32)
+
 from sumeravera_core import verify_ingress_packet, SHARED_SECRET
 
 def run_tests():

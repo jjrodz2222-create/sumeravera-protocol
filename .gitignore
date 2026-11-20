@@ -5,6 +5,7 @@
 states/
 .wget-hsts
 __pycache__/
+.pytest_cache/
 *.log
 sumeravera-master/
 *.tar.gz
