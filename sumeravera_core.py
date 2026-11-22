@@ -24,6 +24,25 @@ if not PRIMARY_KEY:
 SHARED_SECRET = PRIMARY_KEY.encode("utf-8")
 NONCE_EXPIRY_SECONDS = 300
 
+# Skew bounds for POST /verify, matching the edge guardian (65s past /
+# 5s future). The old symmetric 300s window let drifted packets through
+# POST /verify that Gate 1 would only stage as REBALANCING; the
+# 2026-11-20 live demo showed 5 drifted fraud items accepted on this
+# path. NONCE_EXPIRY_SECONDS above is now only the nonce-store
+# retention used by prune_expired_nonces, not the verify window.
+MAX_PAST_SKEW_SECONDS = 65.0
+MAX_FUTURE_SKEW_SECONDS = 5.0
+
+# Identity screening (watchlist.py + gates.py): excluded-provider
+# check, additive on top of integrity verification. Imported here;
+# both modules import only stdlib, so there is no import cycle.
+# screen_ingress_packet lives in THIS module (not gates.py) because it
+# needs the HMAC/nonce/ledger primitives that live here; gates.py
+# holds only the identity-screening verdicts (Gate 2 exact + Gate 3
+# fuzzy). See GATES.md.
+from gates import ScreeningResult, screen_identity
+from watchlist import get_default_watchlist
+
 # 2. Device Identity Keyring
 # A node key exists in the keyring only when its env var is set explicitly.
 # A device that presents an unknown device_id is rejected; a node never
@@ -187,21 +206,48 @@ def _record_verified_ingress(ledger_conn, nonce: str, timestamp: float, device_i
     )
 
 
-def verify_ingress_packet(payload: bytes, signature: str, nonce: str, timestamp: float, device_id: Optional[str] = None, ledger_conn=None) -> bool:
-    """Verify one ingress packet. When ledger_conn is given, a verified
-    packet is appended to the state ledger; if that append raises, the
-    exception propagates (the packet was verified and its nonce consumed,
-    so the failure must not be silently reported as a rejection)."""
+def _screen_ingress_packet(payload: bytes, signature: str, nonce: str, timestamp: float, device_id: Optional[str] = None, ledger_conn=None, watchlist=None) -> ScreeningResult:
+    """Verify one ingress packet and return the full screening result.
+
+    The single source of truth for the check order; both
+    verify_ingress_packet (boolean) and screen_ingress_packet
+    (verdict) are thin wrappers over this function, so the two can
+    never drift apart.
+
+    Order of checks: time window (65s past / 5s future, matching the
+    edge guardian) -> device/key resolution -> HMAC signature (before
+    the nonce is recorded) -> identity screening (Gates 2 and 3; an
+    EXCLUDED or REVIEW packet does NOT consume its nonce) -> replay
+    check -> ledger append (CLEAR only).
+
+    Verdicts: "CLEAR" (verified=True; nonce consumed, ledger entry
+    when ledger_conn is given), "EXCLUDED" (integrity failure or an
+    exact identity match; the reason string says which), "REVIEW"
+    (fuzzy identity match or exact name with a mismatched ZIP; held
+    for secondary review). EXCLUDED and REVIEW are both verified=False
+    -- a held or rejected packet never enters the verified ledger. If
+    the ledger append raises, the exception propagates (the packet was
+    verified and its nonce consumed, so the failure must not be
+    silently reported as a rejection).
+
+    ``watchlist`` is a watchlist.Watchlist instance; None means "use
+    the process default" (SUMERAVERA_WATCHLIST_PATH /
+    SUMERAVERA_WATCHLIST_NAMES_PATH or watchlist.txt /
+    watchlist-names.txt in the working directory, else screening off).
+    Pass watchlist.Watchlist.disabled() to force screening off."""
     now = time.time()
 
-    # Time Drift Check
-    if abs(now - timestamp) > NONCE_EXPIRY_SECONDS:
-        return False
+    # Time Drift Check: asymmetric skew bounds, matching the edge
+    # guardian. A packet 100s old is rejected here, as it is at Gate 1.
+    if (now - timestamp) > MAX_PAST_SKEW_SECONDS:
+        return ScreeningResult("EXCLUDED", "stale_timestamp")
+    if (timestamp - now) > MAX_FUTURE_SKEW_SECONDS:
+        return ScreeningResult("EXCLUDED", "future_timestamp")
 
     # Key Resolution: an unknown device_id is rejected outright; a node never
     # falls back to the shared secret.
     if device_id is not None and device_id not in DEVICE_KEYRING:
-        return False
+        return ScreeningResult("EXCLUDED", "unknown_device")
     secret = DEVICE_KEYRING.get(device_id, SHARED_SECRET) if device_id else SHARED_SECRET
 
     # HMAC-SHA256 Constant-Time Verification.
@@ -210,17 +256,51 @@ def verify_ingress_packet(payload: bytes, signature: str, nonce: str, timestamp:
     message = f"{nonce}:{int(timestamp)}:".encode("utf-8") + payload
     expected_sig = hmac.new(secret, message, hashlib.sha256).hexdigest()
     if not hmac.compare_digest(expected_sig, signature):
-        return False
+        return ScreeningResult("EXCLUDED", "bad_signature")
+
+    # Identity screening (Gates 2 and 3): an excluded provider, or a
+    # near-match held for review. Runs after integrity, before the
+    # nonce is recorded, so a rejected or held packet keeps its nonce
+    # (like a bad signature) and can be re-presented if the provider
+    # leaves the list or the review clears it. When no watchlist is
+    # configured this step is a no-op and verification is unchanged.
+    wl = watchlist if watchlist is not None else get_default_watchlist()
+    identity = screen_identity(payload, wl)
+    if identity.verdict != "CLEAR":
+        return identity
 
     # Replay Check: only a signature-verified packet registers its nonce.
     if not register_nonce(nonce, timestamp):
-        return False
+        return ScreeningResult("EXCLUDED", "replay")
 
     # Ledger: a verified packet is recorded in the hash-chained ledger.
     if ledger_conn is not None:
         _record_verified_ingress(ledger_conn, nonce, timestamp, device_id)
 
-    return True
+    return ScreeningResult("CLEAR", "verified")
+
+
+def verify_ingress_packet(payload: bytes, signature: str, nonce: str, timestamp: float, device_id: Optional[str] = None, ledger_conn=None, watchlist=None) -> bool:
+    """Verify one ingress packet (boolean contract, kept for existing
+    callers). True only for a CLEAR packet. REVIEW counts as NOT
+    verified (False) -- a held packet never enters the verified
+    ledger. See _screen_ingress_packet for the check order and the
+    ``watchlist`` parameter."""
+    return _screen_ingress_packet(
+        payload, signature, nonce, timestamp, device_id, ledger_conn, watchlist
+    ).verified
+
+
+def screen_ingress_packet(payload: bytes, signature: str, nonce: str, timestamp: float, device_id: Optional[str] = None, ledger_conn=None, watchlist=None) -> ScreeningResult:
+    """Verify one ingress packet and return the full screening result
+    (verdict, reason, verified). POST /verify branches on this:
+    CLEAR -> 200 + ledger entry, REVIEW -> 202 held for secondary
+    review (no ledger entry), EXCLUDED -> 401. See
+    _screen_ingress_packet for the check order and the ``watchlist``
+    parameter."""
+    return _screen_ingress_packet(
+        payload, signature, nonce, timestamp, device_id, ledger_conn, watchlist
+    )
 
 @app.get("/")
 def get_status():
@@ -240,7 +320,13 @@ async def verify_endpoint(
     x_device_id: Optional[str] = Header(None)
 ):
     body = await request.body()
-    if not verify_ingress_packet(body, x_signature, x_nonce, x_timestamp, x_device_id):
+    result = screen_ingress_packet(body, x_signature, x_nonce, x_timestamp, x_device_id)
+    if result.verdict == "REVIEW":
+        # Held for secondary review (Gate 3 fuzzy match, or an exact
+        # name with a mismatched ZIP): not verified, no ledger entry,
+        # nonce not consumed. The caller may re-present after review.
+        raise HTTPException(status_code=202, detail="held for secondary review")
+    if result.verdict == "EXCLUDED":
         raise HTTPException(status_code=401, detail="Zero-trust invariant verification failed")
 
     # Record the verified ingress in the state ledger. If the record cannot

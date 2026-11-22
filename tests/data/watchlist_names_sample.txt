@@ -1,0 +1,10 @@
+# SYNTHETIC TEST VALUES ONLY -- not real exclusions.
+# Sample name index for tests/test_gates.py. These names are invented
+# for tests; no real provider is named here.
+# Format: P|LASTNAME|FIRSTNAME|DOB|ZIP (ZIP may be empty), B|BUSNAME|STATE.
+P|DOE|JOHN|19800101|12345
+P|DOE|JANE|19751224|12345
+P|SMITH|ALICE|19900303|
+P|TESTER|BOB|19850505|90210
+B|ACME CLINIC|TX
+B|TEST HEALTH SERVICES|CA

@@ -17,10 +17,29 @@ Three-tier routing (status codes mirror the console's historical tiers):
   * REBALANCING (202) -- verified but drifted (5s < age <= 65s, the
                         guardian's past-skew bound). Accepted for
                         deterministic ordering; appended to the ledger.
+                        ALSO the tier for an identity REVIEW (Gate 3
+                        fuzzy match, or an exact name with a mismatched
+                        ZIP): held for secondary review, action
+                        HELD_FOR_REVIEW, and -- unlike drifted
+                        REBALANCING -- NOT appended to the ledger. A
+                        held packet never enters the verified ledger.
   * QUARANTINE (403)  -- guardian rejected the frame (bad signature,
-                        replay, stale/future timestamp, bad nonce).
-                        Isolated: nothing is written to the state ledger,
-                        so a rejected payload can never pollute it.
+                        replay, stale/future timestamp, bad nonce), OR
+                        the provider named in the claim is on the
+                        excluded-provider watchlist (Gate 2 exact
+                        match, reason "identity_excluded"). Isolated:
+                        nothing is written to the state ledger, so a
+                        rejected payload can never pollute it.
+
+Identity screening (Gates 2 and 3, gates.py) is additive: it runs
+after the guardian verifies the frame, and only when a watchlist is
+configured -- with no list file, screening is off and routing is
+unchanged. Note the ordering consequence: the guardian records the
+nonce during verification, before the identity check runs, so on this
+path an identity-rejected or identity-held packet's nonce IS consumed
+(unlike POST /verify, where the check runs before nonce registration).
+The packet is still quarantined or held and never reaches the ledger
+either way.
 
 Deliberately NOT included: the AI Studio console app's SettlementEngine,
 trust vault, and 5% extraction. Those belong to the console demo, not to
@@ -42,7 +61,9 @@ import time
 from typing import Optional
 
 from edge_guardian import EdgeTelemetryGuardian
+from gates import screen_identity
 from local_ledger import append_state_entry, get_connection, initialize_ledger
+from watchlist import get_default_watchlist
 
 # A verified packet whose timestamp is this fresh is canonical.
 STABLE_DRIFT_SECONDS = 5.0
@@ -69,6 +90,11 @@ class Gate1:
 
     Pass one or the other, not both. When neither is given, the gate
     verifies and routes but records nothing.
+
+    ``watchlist`` is a watchlist.Watchlist instance; None means "use
+    the process default" (SUMERAVERA_WATCHLIST_PATH or watchlist.txt in
+    the working directory, else screening off). Pass
+    watchlist.Watchlist.disabled() to force screening off.
     """
 
     def __init__(
@@ -76,12 +102,14 @@ class Gate1:
         guardian: Optional[EdgeTelemetryGuardian] = None,
         ledger_conn=None,
         ledger_db_path: Optional[str] = None,
+        watchlist=None,
     ) -> None:
         if ledger_conn is not None and ledger_db_path is not None:
             raise ValueError("pass ledger_conn or ledger_db_path, not both")
         self.guardian = guardian or EdgeTelemetryGuardian()
         self.ledger_conn = ledger_conn
         self.ledger_db_path = ledger_db_path
+        self.watchlist = watchlist
         self._ledger_local = threading.local()
 
     def _ledger_connection(self):
@@ -134,6 +162,39 @@ class Gate1:
                 "reason": "verification_failed",
                 "nonce": nonce,
                 "drift_ms": None,
+                "ledger_seq": None,
+                "ledger_hash": None,
+            }
+
+        # Identity screening (Gates 2 and 3): an exact match quarantines
+        # the packet; a near-match holds it for secondary review as
+        # REBALANCING (202) regardless of the anomaly index -- but, unlike
+        # drifted REBALANCING, a held packet is NOT appended to the
+        # ledger. Runs after the guardian verifies the frame and before
+        # anything is recorded. When no watchlist is configured this step
+        # is a no-op and routing is unchanged.
+        wl = self.watchlist if self.watchlist is not None else get_default_watchlist()
+        identity = screen_identity(payload, wl)
+        if identity.verdict == "EXCLUDED":
+            return {
+                "tier": "QUARANTINE",
+                "status_code": 403,
+                "action": "ISOLATED",
+                "reason": "identity_excluded",
+                "nonce": nonce,
+                "drift_ms": None,
+                "ledger_seq": None,
+                "ledger_hash": None,
+            }
+        if identity.verdict == "REVIEW":
+            drift_s = time.time() - float(timestamp)
+            return {
+                "tier": "REBALANCING",
+                "status_code": 202,
+                "action": "HELD_FOR_REVIEW",
+                "reason": "identity_review",
+                "nonce": nonce,
+                "drift_ms": round(drift_s * 1000, 3),
                 "ledger_seq": None,
                 "ledger_hash": None,
             }

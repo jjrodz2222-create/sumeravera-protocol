@@ -1,0 +1,26 @@
+# Monthly refresh of the SumerAvera excluded-provider watchlist.
+#
+# OIG updates the LEIE monthly; this timer runs
+# sumeravera-watchlist-refresh.service once a month. Persistent=true
+# means a missed run (machine off at the scheduled time) fires on the
+# next boot instead of being skipped. Install with:
+#
+#   sudo cp sumeravera-watchlist-refresh.service \
+#           sumeravera-watchlist-refresh.timer /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now sumeravera-watchlist-refresh.timer
+#
+# Check it with:
+#   systemctl list-timers sumeravera-watchlist-refresh.timer
+#   systemctl status sumeravera-watchlist-refresh.service
+#   journalctl -u sumeravera-watchlist-refresh.service
+[Unit]
+Description=Monthly refresh of the SumerAvera excluded-provider watchlist
+
+[Timer]
+OnCalendar=monthly
+Persistent=true
+Unit=sumeravera-watchlist-refresh.service
+
+[Install]
+WantedBy=timers.target

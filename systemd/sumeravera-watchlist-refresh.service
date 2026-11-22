@@ -1,0 +1,33 @@
+# SumerAvera excluded-provider watchlist refresh (HHS-OIG LEIE).
+#
+# Runs refresh_watchlist.py once: downloads the official LEIE CSV and
+# rebuilds watchlist.txt (NPIs) and watchlist-names.txt (name keys)
+# atomically. Triggered monthly by
+# sumeravera-watchlist-refresh.timer. NOT installed by default -- see
+# WATCHLIST.md for the install steps.
+#
+# Edit the three paths below to the install directory before enabling:
+#   WorkingDirectory -- the directory holding refresh_watchlist.py and
+#                       watchlist.py (the script imports normalization
+#                       from watchlist.py in the same directory).
+#   Environment     -- where the two list files are written; the
+#                       running gateway must resolve the same paths
+#                       (SUMERAVERA_WATCHLIST_PATH /
+#                       SUMERAVERA_WATCHLIST_NAMES_PATH, or the files
+#                       in its working directory).
+#   ExecStart       -- absolute path to the script.
+#
+# No secrets: the refresh downloads a public CSV and writes two list
+# files. Run as a user that owns the list files and can write them;
+# set User= if the gateway runs as a service account.
+[Unit]
+Description=SumerAvera excluded-provider watchlist refresh (HHS-OIG LEIE)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/sumeravera
+Environment=SUMERAVERA_WATCHLIST_PATH=/opt/sumeravera/watchlist.txt
+Environment=SUMERAVERA_WATCHLIST_NAMES_PATH=/opt/sumeravera/watchlist-names.txt
+ExecStart=/usr/bin/python3 /opt/sumeravera/refresh_watchlist.py

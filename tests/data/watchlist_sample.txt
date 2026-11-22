@@ -1,0 +1,8 @@
+# SYNTHETIC TEST VALUES ONLY -- not real exclusions.
+# Sample watchlist for tests/test_watchlist.py. These NPIs are invented
+# for tests; no real provider is named here.
+1111111111
+2222222222
+1234567890
+1000000007
+9999999999
