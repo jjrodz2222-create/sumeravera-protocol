@@ -1,0 +1,11 @@
+# Keep the image to what the service needs to run.
+# Test databases and bytecode must never be baked into an image.
+__pycache__
+*.pyc
+*.db
+*.db-wal
+*.db-shm
+tests
+systemd
+.venv
+.git

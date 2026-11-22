@@ -1,0 +1,5 @@
+# Third-party dependencies for the SumerAvera protocol service.
+# Pinned to the versions the demo and CI verify against.
+# Everything else the protocol needs is the Python standard library.
+fastapi==0.165.0
+uvicorn==0.54.0
