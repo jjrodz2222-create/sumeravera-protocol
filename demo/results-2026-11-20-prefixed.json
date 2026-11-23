@@ -1,0 +1,7861 @@
+{
+  "summary": {
+    "generated_at_utc": "2026-11-20T23:09:44Z",
+    "packets_sent_total": 975,
+    "replay_setup_sends_not_counted_as_items": 110,
+    "items_total": 865,
+    "fraud_items": 435,
+    "legitimate_items": 430,
+    "by_class": {
+      "fraud_bad_sig": {
+        "items": 110,
+        "tiers": {
+          "QUARANTINE": 100,
+          "REJECTED": 10
+        },
+        "watchlist_hits": 100
+      },
+      "fraud_clean": {
+        "items": 50,
+        "tiers": {
+          "STABLE": 50
+        },
+        "watchlist_hits": 50
+      },
+      "fraud_drifted": {
+        "items": 55,
+        "tiers": {
+          "REBALANCING": 50,
+          "OK": 5
+        },
+        "watchlist_hits": 50
+      },
+      "fraud_replay": {
+        "items": 110,
+        "tiers": {
+          "QUARANTINE": 100,
+          "REJECTED": 10
+        },
+        "watchlist_hits": 100
+      },
+      "fraud_stale": {
+        "items": 110,
+        "tiers": {
+          "QUARANTINE": 100,
+          "REJECTED": 10
+        },
+        "watchlist_hits": 100
+      },
+      "legitimate": {
+        "items": 430,
+        "tiers": {
+          "STABLE": 400,
+          "OK": 30
+        },
+        "watchlist_hits": 0
+      }
+    },
+    "fraud_stopped_by_protocol": 330,
+    "fraud_stopped_combined": 430,
+    "fraud_stopped_by_watchlist_only": 100,
+    "fraud_missed_entirely": 5,
+    "legitimate_quarantined_or_rejected_false_positives": 0,
+    "legitimate_watchlist_hits": 0,
+    "ws_main_run_seconds": 0.6,
+    "ws_main_run_packets_per_second": 1174.8,
+    "http_phase_seconds": 0.3,
+    "http_phase_packets_per_second": 253.1,
+    "burst_seconds": 0.13,
+    "burst_packets_per_second": 1548.1,
+    "catch_rate_protocol_only": 0.7586,
+    "catch_rate_combined": 0.9885,
+    "false_positive_rate": 0.0
+  },
+  "records": [
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0001",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 1
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0002",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 2
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0003",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 3
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0004",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 4
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0005",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 5
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0006",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 6
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0007",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 7
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0008",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 8
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0009",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 9
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0010",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 10
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0011",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 11
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0012",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 12
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0013",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 13
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0014",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 14
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0015",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 15
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0016",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 16
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0017",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 17
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0018",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 18
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0019",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 19
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0020",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 20
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0021",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 21
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0022",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 22
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0023",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 23
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0024",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 24
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0025",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 25
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0026",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 26
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0027",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 27
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0028",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 28
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0029",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 29
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0030",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 30
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0031",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 31
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0032",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 32
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0033",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 33
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0034",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 34
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0035",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 35
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0036",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 36
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0037",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 37
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0038",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 38
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0039",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 39
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0040",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 40
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0041",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 41
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0042",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 42
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0043",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 43
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0044",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 44
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0045",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 45
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0046",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 46
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0047",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 47
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0048",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 48
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0049",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 49
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0050",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 50
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0051",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 51
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0052",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 52
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0053",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 53
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0054",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 54
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0055",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 55
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0056",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 56
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0057",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 57
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0058",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 58
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0059",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 59
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0060",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 60
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0061",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 61
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0062",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 62
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0063",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 63
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0064",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 64
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0065",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 65
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0066",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 66
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0067",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 67
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0068",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 68
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0069",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 69
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0070",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 70
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0071",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 71
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0072",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 72
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0073",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 73
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0074",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 74
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0075",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 75
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0076",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 76
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0077",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 77
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0078",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 78
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0079",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 79
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0080",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 80
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0081",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 81
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0082",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 82
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0083",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 83
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0084",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 84
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0085",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 85
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0086",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 86
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0087",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 87
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0088",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 88
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0089",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 89
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0090",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 90
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0091",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 91
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0092",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 92
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0093",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 93
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0094",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 94
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0095",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 95
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0096",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 96
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0097",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 97
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0098",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 98
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0099",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 99
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0100",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 100
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0101",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 101
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0102",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 102
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0103",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 103
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0104",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 104
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0105",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 105
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0106",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 106
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0107",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 107
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0108",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 108
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0109",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 109
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0110",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 110
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0111",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 111
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0112",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 112
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0113",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 113
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0114",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 114
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0115",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 115
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0116",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 116
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0117",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 117
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0118",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 118
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0119",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 119
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0120",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 120
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0121",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 121
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0122",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 122
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0123",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 123
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0124",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 124
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0125",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 125
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0126",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 126
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0127",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 127
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0128",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 128
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0129",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 129
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0130",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 130
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0131",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 131
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0132",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 132
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0133",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 133
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0134",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 134
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0135",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 135
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0136",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 136
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0137",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 137
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0138",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 138
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0139",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 139
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0140",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 140
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0141",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 141
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0142",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 142
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0143",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 143
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0144",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 144
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0145",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 145
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0146",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 146
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0147",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 147
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0148",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 148
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0149",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 149
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0150",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 150
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0151",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 151
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0152",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 152
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0153",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 153
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0154",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 154
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0155",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 155
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0156",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 156
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0157",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 157
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0158",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 158
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0159",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 159
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0160",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 160
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0161",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 161
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0162",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 162
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0163",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 163
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0164",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 164
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0165",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 165
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0166",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 166
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0167",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 167
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0168",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 168
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0169",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 169
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0170",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 170
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0171",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 171
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0172",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 172
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0173",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 173
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0174",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 174
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0175",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 175
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0176",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 176
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0177",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 177
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0178",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 178
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0179",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 179
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0180",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 180
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0181",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 181
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0182",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 182
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0183",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 183
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0184",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 184
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0185",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 185
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0186",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 186
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0187",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 187
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0188",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 188
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0189",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 189
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0190",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 190
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0191",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 191
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0192",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 192
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0193",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 193
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0194",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 194
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0195",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 195
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0196",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 196
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0197",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 197
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0198",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 198
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0199",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 199
+    },
+    {
+      "transport": "ws",
+      "cls": "legitimate",
+      "claim_id": "legit-0200",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 200
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0201",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0202",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0203",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0204",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0205",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0206",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0207",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0208",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0209",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0210",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0211",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0212",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0213",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0214",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0215",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0216",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0217",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0218",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0219",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0220",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0221",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0222",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0223",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0224",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0225",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0226",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0227",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0228",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0229",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0230",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0231",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0232",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0233",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0234",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0235",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0236",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0237",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0238",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0239",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0240",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0241",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0242",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0243",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0244",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0245",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0246",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0247",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0248",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0249",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0250",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0251",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0252",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0253",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0254",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0255",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0256",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0257",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0258",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0259",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0260",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0261",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0262",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0263",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0264",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0265",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0266",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0267",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0268",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0269",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0270",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0271",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0272",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0273",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0274",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0275",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0276",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0277",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0278",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0279",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0280",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0281",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0282",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0283",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0284",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0285",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0286",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0287",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0288",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0289",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0290",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0291",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0292",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0293",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0294",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0295",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0296",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0297",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0298",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0299",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_bad_sig",
+      "claim_id": "bad-0300",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0301",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0302",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0303",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0304",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0305",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0306",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0307",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0308",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0309",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0310",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0311",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0312",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0313",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0314",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0315",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0316",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0317",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0318",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0319",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0320",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0321",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0322",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0323",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0324",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0325",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0326",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0327",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0328",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0329",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0330",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0331",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0332",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0333",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0334",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0335",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0336",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0337",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0338",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0339",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0340",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0341",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0342",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0343",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0344",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0345",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0346",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0347",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0348",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0349",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0350",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0351",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0352",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0353",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0354",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0355",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0356",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0357",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0358",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0359",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0360",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0361",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0362",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0363",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0364",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0365",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0366",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0367",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0368",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0369",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0370",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0371",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0372",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0373",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0374",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0375",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0376",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0377",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0378",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0379",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0380",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0381",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0382",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0383",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0384",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0385",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0386",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0387",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0388",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0389",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0390",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0391",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0392",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0393",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0394",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0395",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0396",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0397",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0398",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0399",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_replay",
+      "claim_id": "rep-0400",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0401",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0402",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0403",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0404",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0405",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0406",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0407",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0408",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0409",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0410",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0411",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0412",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0413",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0414",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0415",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0416",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0417",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0418",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0419",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0420",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0421",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0422",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0423",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0424",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0425",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0426",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0427",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0428",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0429",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0430",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0431",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0432",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0433",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0434",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0435",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0436",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0437",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0438",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0439",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0440",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0441",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0442",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0443",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0444",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0445",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0446",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0447",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0448",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0449",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0450",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0451",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0452",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0453",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0454",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0455",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0456",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0457",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0458",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0459",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0460",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0461",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0462",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0463",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0464",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0465",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0466",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0467",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0468",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0469",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0470",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0471",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0472",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0473",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0474",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0475",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0476",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0477",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0478",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0479",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0480",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0481",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0482",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0483",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0484",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0485",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0486",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0487",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0488",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0489",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0490",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0491",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0492",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0493",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0494",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0495",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0496",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0497",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0498",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0499",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_stale",
+      "claim_id": "stale-0500",
+      "tier": "QUARANTINE",
+      "status": 403,
+      "watchlist": true,
+      "ledger_seq": null
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0501",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 301
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0502",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 302
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0503",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 303
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0504",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 304
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0505",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 305
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0506",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 306
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0507",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 307
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0508",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 308
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0509",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 309
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0510",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 310
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0511",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 311
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0512",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 312
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0513",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 313
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0514",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 314
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0515",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 315
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0516",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 316
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0517",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 317
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0518",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 318
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0519",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 319
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0520",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 320
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0521",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 321
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0522",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 322
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0523",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 323
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0524",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 324
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0525",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 325
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0526",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 326
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0527",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 327
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0528",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 328
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0529",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 329
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0530",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 330
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0531",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 331
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0532",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 332
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0533",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 333
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0534",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 334
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0535",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 335
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0536",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 336
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0537",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 337
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0538",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 338
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0539",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 339
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0540",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 340
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0541",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 341
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0542",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 342
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0543",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 343
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0544",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 344
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0545",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 345
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0546",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 346
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0547",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 347
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0548",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 348
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0549",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 349
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_drifted",
+      "claim_id": "drift-0550",
+      "tier": "REBALANCING",
+      "status": 202,
+      "watchlist": true,
+      "ledger_seq": 350
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0551",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 351
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0552",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 352
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0553",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 353
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0554",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 354
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0555",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 355
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0556",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 356
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0557",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 357
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0558",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 358
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0559",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 359
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0560",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 360
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0561",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 361
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0562",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 362
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0563",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 363
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0564",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 364
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0565",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 365
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0566",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 366
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0567",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 367
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0568",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 368
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0569",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 369
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0570",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 370
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0571",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 371
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0572",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 372
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0573",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 373
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0574",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 374
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0575",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 375
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0576",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 376
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0577",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 377
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0578",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 378
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0579",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 379
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0580",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 380
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0581",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 381
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0582",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 382
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0583",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 383
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0584",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 384
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0585",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 385
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0586",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 386
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0587",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 387
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0588",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 388
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0589",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 389
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0590",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 390
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0591",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 391
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0592",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 392
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0593",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 393
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0594",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 394
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0595",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 395
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0596",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 396
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0597",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 397
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0598",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 398
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0599",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 399
+    },
+    {
+      "transport": "ws",
+      "cls": "fraud_clean",
+      "claim_id": "clean-0600",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": true,
+      "ledger_seq": 400
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0601",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 401
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0602",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 402
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0603",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 403
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0604",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 404
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0605",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 405
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0606",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 406
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0607",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 407
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0608",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 408
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0609",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 409
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0610",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 410
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0611",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 411
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0612",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 412
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0613",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 413
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0614",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 414
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0615",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 415
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0616",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 416
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0617",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 417
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0618",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 418
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0619",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 419
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0620",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 420
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0621",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 421
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0622",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 422
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0623",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 423
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0624",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 424
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0625",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 425
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0626",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 426
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0627",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 427
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0628",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 428
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0629",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 429
+    },
+    {
+      "transport": "http",
+      "cls": "legitimate",
+      "claim_id": "hlegit-0630",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 430
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_bad_sig",
+      "claim_id": "hbad-0631",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_bad_sig",
+      "claim_id": "hbad-0632",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_bad_sig",
+      "claim_id": "hbad-0633",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_bad_sig",
+      "claim_id": "hbad-0634",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_bad_sig",
+      "claim_id": "hbad-0635",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_bad_sig",
+      "claim_id": "hbad-0636",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_bad_sig",
+      "claim_id": "hbad-0637",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_bad_sig",
+      "claim_id": "hbad-0638",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_bad_sig",
+      "claim_id": "hbad-0639",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_bad_sig",
+      "claim_id": "hbad-0640",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_replay",
+      "claim_id": "hrep-0641",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_replay",
+      "claim_id": "hrep-0642",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_replay",
+      "claim_id": "hrep-0643",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_replay",
+      "claim_id": "hrep-0644",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_replay",
+      "claim_id": "hrep-0645",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_replay",
+      "claim_id": "hrep-0646",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_replay",
+      "claim_id": "hrep-0647",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_replay",
+      "claim_id": "hrep-0648",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_replay",
+      "claim_id": "hrep-0649",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_replay",
+      "claim_id": "hrep-0650",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_stale",
+      "claim_id": "hstale-0651",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_stale",
+      "claim_id": "hstale-0652",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_stale",
+      "claim_id": "hstale-0653",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_stale",
+      "claim_id": "hstale-0654",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_stale",
+      "claim_id": "hstale-0655",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_stale",
+      "claim_id": "hstale-0656",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_stale",
+      "claim_id": "hstale-0657",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_stale",
+      "claim_id": "hstale-0658",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_stale",
+      "claim_id": "hstale-0659",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_stale",
+      "claim_id": "hstale-0660",
+      "tier": "REJECTED",
+      "status": 401,
+      "watchlist": false,
+      "ledger_seq": null
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_drifted",
+      "claim_id": "hdrift-0661",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 441
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_drifted",
+      "claim_id": "hdrift-0662",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 442
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_drifted",
+      "claim_id": "hdrift-0663",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 443
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_drifted",
+      "claim_id": "hdrift-0664",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 444
+    },
+    {
+      "transport": "http",
+      "cls": "fraud_drifted",
+      "claim_id": "hdrift-0665",
+      "tier": "OK",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 445
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-00",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 446
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-00",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 447
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-00",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 448
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-00",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 449
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-01",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 450
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-01",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 451
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-01",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 452
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-01",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 453
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-02",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 454
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-02",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 455
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-02",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 456
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-02",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 457
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-03",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 458
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-03",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 459
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-03",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 460
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-03",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 461
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-04",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 462
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-04",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 463
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-04",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 464
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-04",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 465
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-05",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 466
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-05",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 467
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-05",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 468
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-05",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 469
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-06",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 470
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-06",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 471
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-06",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 472
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-06",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 473
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-07",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 474
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-07",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 475
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-07",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 476
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-07",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 477
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-08",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 478
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-08",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 479
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-08",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 480
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-08",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 481
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-09",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 482
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-09",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 483
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-09",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 484
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-09",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 485
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-10",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 486
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-10",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 487
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-10",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 488
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-10",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 489
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-11",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 490
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-11",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 491
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-11",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 492
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-11",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 493
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-12",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 494
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-12",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 495
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-12",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 496
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-12",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 497
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-13",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 498
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-13",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 499
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-13",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 500
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-13",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 501
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-14",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 502
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-14",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 503
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-14",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 504
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-14",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 505
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-15",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 506
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-15",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 507
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-15",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 508
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-15",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 509
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-16",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 510
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-16",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 511
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-16",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 512
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-16",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 513
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-17",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 514
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-17",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 515
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-17",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 516
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-17",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 517
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-18",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 518
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-18",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 519
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-18",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 520
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-18",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 521
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-19",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 522
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-19",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 523
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-19",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 524
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-19",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 525
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-20",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 526
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-20",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 527
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-20",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 528
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-20",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 529
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-21",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 530
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-21",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 531
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-21",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 532
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-21",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 533
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-22",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 534
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-22",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 535
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-22",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 536
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-22",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 537
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-23",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 538
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-23",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 539
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-23",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 540
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-23",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 541
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-24",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 542
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-24",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 543
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-24",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 544
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-24",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 545
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-25",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 546
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-25",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 547
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-25",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 548
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-25",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 549
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-26",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 550
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-26",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 551
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-26",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 552
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-26",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 553
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-27",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 554
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-27",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 555
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-27",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 556
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-27",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 557
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-28",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 558
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-28",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 559
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-28",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 560
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-28",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 561
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-29",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 562
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-29",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 563
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-29",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 564
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-29",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 565
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-30",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 566
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-30",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 567
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-30",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 568
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-30",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 569
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-31",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 570
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-31",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 571
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-31",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 572
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-31",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 573
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-32",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 574
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-32",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 575
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-32",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 576
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-32",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 577
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-33",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 578
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-33",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 579
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-33",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 580
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-33",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 581
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-34",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 582
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-34",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 583
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-34",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 584
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-34",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 585
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-35",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 586
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-35",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 587
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-35",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 588
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-35",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 589
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-36",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 590
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-36",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 591
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-36",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 592
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-36",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 593
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-37",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 594
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-37",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 595
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-37",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 596
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-37",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 597
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-38",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 598
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-38",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 599
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-38",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 600
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-38",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 601
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-39",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 602
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-39",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 603
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-39",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 604
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-39",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 605
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-40",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 606
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-40",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 607
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-40",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 608
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-40",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 609
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-41",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 610
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-41",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 611
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-41",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 612
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-41",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 613
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-42",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 614
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-42",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 615
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-42",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 616
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-42",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 617
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-43",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 618
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-43",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 619
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-43",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 620
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-43",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 621
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-44",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 622
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-44",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 623
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-44",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 624
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-44",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 625
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-45",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 626
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-45",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 627
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-45",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 628
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-45",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 629
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-46",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 630
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-46",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 631
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-46",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 632
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-46",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 633
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-47",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 634
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-47",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 635
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-47",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 636
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-47",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 637
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-48",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 638
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-48",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 639
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-48",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 640
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-48",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 641
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-0-49",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 642
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-1-49",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 643
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-2-49",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 644
+    },
+    {
+      "transport": "ws-burst",
+      "cls": "legitimate",
+      "claim_id": "burst-3-49",
+      "tier": "STABLE",
+      "status": 200,
+      "watchlist": false,
+      "ledger_seq": 645
+    }
+  ]
+}
